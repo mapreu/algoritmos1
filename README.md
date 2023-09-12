@@ -15,4 +15,5 @@ Lxs alentamos a participar activamente, hacer preguntas, plantear dudas, aportar
 
 # Contenido
 
+0. [Usando GIT](00_usando_git/README.md)
 1. [Introducción a Java](01_introduccion/README.md)

@@ -1,5 +1,5 @@
 # Introducción a Java
-En este módulo, aprenderemos los conceptos básicos de Java y la programación orientada a objetos. Utilizaremos Visual Studio Code como nuestro entorno de desarrollo para escribir, compilar y ejecutar programas Java.
+En este módulo aprenderemos los conceptos básicos de Java y la programación orientada a objetos. Utilizaremos Visual Studio Code como nuestro entorno de desarrollo para escribir, compilar y ejecutar programas Java.
 
 ## ¿Qué es Java?
 Java es un lenguaje de programación de alto nivel desarrollado por Sun Microsystems (ahora parte de Oracle). Es conocido por su portabilidad y su capacidad para crear aplicaciones robustas y escalables. Java se basa en el paradigma de la programación orientada a objetos (POO).
