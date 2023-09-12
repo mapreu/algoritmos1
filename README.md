@@ -1,2 +1,18 @@
 # algoritmos1
-Contenido para la materia Algoritmos 1 de la Licenciatura en Ciencia de Datos de UNSAM
+Repositorio para la materia Algoritmos 1 de la Licenciatura en Ciencia de Datos de UNSAM.
+
+# Mensaje de Bienvenida
+
+Les damos la bienvenida al **Curso Algoritmos 1**. Este curso representa un punto de partida en el viaje hacia el dominio de la programación orientada a objetos donde estaremos utilizando el lenguaje **Java**.
+
+La programación orientada a objetos (POO) es un paradigma esencial en el mundo del desarrollo de software. Durante el transcurso de este curso, se embarcarán en un proceso de aprendizaje que les permitirá aprender los conceptos clave de la POO y su implementación práctica en Java.
+
+Nuestro objetivo principal es proporcionarles una base sólida en esta forma de diseñar soluciones e intentar cultivar la capacidad de aplicar estos principios en situaciones reales de desarrollo. A lo largo del curso se encontrarán con una variedad de ejemplos, ejercicios y desafíos diseñados para fortalecer sus habilidades y comprensión.
+
+Independientemente de su nivel de experiencia previa en programación, este curso está diseñado para ser inclusivo y accesible para cualquier estudiante.
+
+Lxs alentamos a participar activamente, hacer preguntas, plantear dudas, aportar conocimientos previos y proponer desafíos que les interese resolver. Estamos aquí para aprender con ustedes y esperamos recorrer este camino incorporando nuevas experiencias.
+
+# Contenido
+
+1. [Introducción a Java](01_introduccion/README.md)
