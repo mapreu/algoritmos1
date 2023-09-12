@@ -78,8 +78,8 @@ b. Cambiar a la rama main
 $ git checkout main
 ```
 
-c. Realizar el marge
+c. Realizar el merge desde _nombre_rama_ a la rama actual (main)
 
 ```bash
-$ git marge nombre_rama
+$ git merge nombre_rama
 ```
