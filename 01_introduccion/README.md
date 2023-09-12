@@ -32,7 +32,7 @@ Para escribir, compilar y ejecutar programas Java en Visual Studio Code, podemos
 
 - **Escribir tu Programa Java**: Abrí el archivo .java y escribí tu código Java. Por ejemplo:
 
-```
+```java
 public class MiPrograma {
     public static void main(String[] args) {
         System.out.println("¡Hola, Mundo!");
@@ -42,14 +42,14 @@ public class MiPrograma {
 
 - **Compilar y Ejecutar**: En una terminal en Visual Studio Code (menú "Terminal" > "Nueva Terminal"), navegá a la carpeta de tu proyecto y compilá tu programa Java usando el comando:
 
-```
+```bash
 $ javac MiPrograma.java
 ```
 Esto generará un archivo .class que contiene el _bytecode_ Java, es un archivo binario que puede ejecutarse por la _JVM_ (Java Virtual Machine) que viene en el entorno de ejecución (_JRE_, Java Runtime Environment).
 
 - **Ejecutar el Programa**: Para ejecutar el programa, usá el comando:
 
-```
+```bash
 $ java MiPrograma
 ```
 Deberías ver la salida "¡Hola, Mundo!" en la terminal.
@@ -57,7 +57,7 @@ Deberías ver la salida "¡Hola, Mundo!" en la terminal.
 ## Estructura de Archivos y Paquetes
 En Java, los programas se organizan en clases y se agrupan en **paquetes**. La estructura de archivos y carpetas debe coincidir con la estructura de paquetes. Por ejemplo, si tienes una clase llamada MiClase en el paquete com.miorganizacion, la estructura de carpetas debería ser:
 
-```
+```bash
 mi-proyecto/
     src/
         com/
@@ -67,7 +67,7 @@ mi-proyecto/
 
 Esta estructura de archivos y paquetes ayuda a organizar y gestionar proyectos Java más grandes y complejos. Para agregar una clase a un paquete se define en su primera línea cuál es el nombre del paquete al cual pertenece con el operador **package**.
  
-```
+```java
 package miPaquete;
 
 class MiClase {
@@ -91,7 +91,7 @@ La sintaxis básica del operador import es la siguiente:
 
 Veamos este ejemplo. Supongamos que tenés una clase llamada _MiClase_ en el paquete _miPaquete_, y queremos importarla en otra clase para usarla.
 
-```
+```java
 import miPaquete.MiClase;
 
 public class OtraClase {
@@ -105,7 +105,7 @@ public class OtraClase {
 #### Importación de Clases de Java Estándar
 Para usar clases de la biblioteca estándar de Java, como _Scanner_ para entrada de usuarix o _ArrayList_ para listas dinámicas, también debemos importarlas si no están en el paquete java.lang. Por ejemplo:
 
-```
+```java
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -121,7 +121,7 @@ public class MiPrograma {
 #### Importación Estática
 Además de importar clases, también es posible realizar una _importación estática_ de miembros estáticos de una clase utilizando la palabra clave **static**. Esto te permite acceder a los miembros estáticos directamente sin utilizar el nombre de la clase. Veremos más adelante de qué se tratan.
 
-```
+```java
 import static paquete.ClaseEstatica.miMetodoEstatico;
 
 public class MiPrograma {
@@ -135,7 +135,7 @@ public class MiPrograma {
 
 Las clases son la base de la programación orientada a objetos en Java. Una clase define un objeto y puede contener atributos (propiedades) y métodos (comportamientos). Por ejemplo:
 
-```
+```java
 public class Persona {
     // Atributos
     String nombre;
@@ -155,7 +155,7 @@ public class Persona {
 ```
 Para consumir la clase _Persona_ se puede instanciar un objeto a partir de ella de la siguiente forma:
 
-```
+```java
 Persona juana = new Persona("Juana", 25);
 juana.saludar();
 ```
@@ -166,7 +166,7 @@ Los atributos en Java son variables que se definen dentro de una clase y represe
 
 Por ejemplo, en la clase _Persona_, los atributos podrían ser nombre, edad, altura, etc.
 
-```
+```java
 public class Persona {
     String nombre; // Atributo de tipo String
     int edad;      // Atributo de tipo int
@@ -181,7 +181,7 @@ Los métodos en Java son funciones que se definen dentro de una clase y represen
 
 Por ejemplo, en una clase _Auto_, podríamos tener métodos como arrancar(), detener(), acelerar(int velocidad), etc.
 
-```
+```java
 public class Auto {
     // Atributos
     
@@ -207,7 +207,7 @@ En Java, cuando una clase tiene definido un método especial **main**, podremos 
 
 El parámetro args permite aceptar argumentos de entrada al programa cuando se ejecuta la clase. Por ejemplo:
 
-```
+```java
 public class Prueba {
     public static void main(String[] args) {
         for (int i=0; i < args.length; i++) {
@@ -216,11 +216,11 @@ public class Prueba {
     }
 }
 ```
-```
+```bash
 $ java Prueba Estos son 4 argumentos
 ```
 La salida de la ejecución de la clase _Prueba_ será:
-```
+```bash
 Argumento 0: Estos
 Argumento 1: son
 Argumento 2: 4
@@ -241,7 +241,7 @@ Algunos ejemplos de variables primitivas incluyen:
 - char: Almacena caracteres Unicode.
 - boolean: Almacena valores booleanos (verdadero o falso).
 
-```
+```java
 int edad = 25;       // Variable primitiva de tipo int
 double precio = 19.99; // Variable primitiva de tipo double
 char letra = 'A';    // Variable primitiva de tipo char
@@ -251,7 +251,7 @@ boolean esMayor = true; // Variable primitiva de tipo boolean
 ### Variables de Referencia
 Las variables de referencia en Java almacenan direcciones de memoria donde se encuentra el objeto. En lugar de almacenar el objeto directamente, estas variables apuntan al objeto en la memoria. Estas variables se utilizan para acceder a objetos y llamar a sus métodos.
 
-```
+```java
 Persona juana = new Persona("Juana", 25);
 ```
 En este caso, juana es una variable de referencia que apunta a un objeto de tipo Persona.
@@ -267,14 +267,14 @@ Java proporciona **clases relacionadas con variables primitivas** para realizar 
 #### Autoboxing y Unboxing
 El **autoboxing** es una característica de Java que permite que las variables primitivas se conviertan automáticamente en objetos de las clases relacionadas cuando sea necesario. Por ejemplo:
 
-```
+```java
 // Autoboxing: int (el literal 25) se convierte en Integer automáticamente
 Integer edad = 25;
 ```
 
 El **unboxing** es la operación inversa, que convierte automáticamente un objeto de una clase relacionada en su valor primitivo correspondiente:
 
-```
+```java
 // Unboxing: Integer se convierte en int automáticamente
 int valor = edad;
 ```
@@ -312,7 +312,7 @@ El programa recibe entonces un número X cuando se ejecuta. Luego, solicitará X
 ### Estructura if
 La estructura **if** se utiliza para tomar decisiones en un programa. Permite ejecutar un bloque de código si una condición es verdadera.
 
-```
+```java
 int edad = 22;
 
 if (edad >= 18) {
@@ -325,7 +325,7 @@ if (edad >= 18) {
 ### Estructura if-else if-else
 Esta estructura se utiliza cuando hay múltiples condiciones que se deben verificar en orden. El bloque de código correspondiente a la primera condición verdadera será el que se ejecute, de lo contrario si no se cumple ninguna condición se ejecuta el último bloque.
 
-```
+```java
 int nota = 85;
 
 if (nota >= 90) {
@@ -344,7 +344,7 @@ if (nota >= 90) {
 ### Estructura switch
 El **switch** se utiliza para realizar múltiples verificaciones de igualdad sobre el valor de una expresión. Se utiliza principalmente para casos en los que se necesita comparar una variable con múltiples valores posibles.
 
-```
+```java
 int diaDeLaSemana = 3;
 String nombreDia;
 
@@ -364,14 +364,14 @@ switch (diaDeLaSemana) {
 ### Estructura for
 El bucle **for** se utiliza para repetir un bloque de código un número conocido de veces.
 
-```
+```java
 for (int i = 1; i <= 5; i++) {
     System.out.println("Iteración " + i);
 }
 ```
 Un caso especial de esta estructura es el **for each** el cual facilita la iteración sobre secuencias lineales, visitando cada uno de los elementos que contiene.
 
-```
+```java
 for (String argumento : arregloArgumentos) {
     System.out.println("Valor argumento: " + argumento);
 }
@@ -380,7 +380,7 @@ for (String argumento : arregloArgumentos) {
 ### Estructura while
 El bucle **while** se utiliza para repetir un bloque de código mientras una condición sea verdadera.
 
-```
+```java
 int contador = 0;
 
 while (contador < 5) {
@@ -392,7 +392,7 @@ while (contador < 5) {
 ### Estructura do-while
 El bucle **do-while** se utiliza para repetir un bloque de código al menos una vez y luego repetirlo mientras una condición sea verdadera.
 
-```
+```java
 int numero = 1;
 
 do {
@@ -410,7 +410,7 @@ do {
 - **/**: División
 - **%**: Módulo (resto de la división)
 
-```
+```java
 int a = 10;
 int b = 3;
 int suma = a + b;
@@ -428,7 +428,7 @@ int modulo = a % b;
 - **\>**: Mayor que
 - **\>**=: Mayor o igual que
 
-```
+```java
 int x = 5;
 int y = 10;
 
@@ -443,7 +443,7 @@ boolean mayorQue = x > y;
 - **||**: O lógico (OR)
 - **!**: Negación lógica (NOT)
 
-```
+```java
 boolean esMayorDeEdad = true;
 boolean tieneLicencia = false;
 
@@ -462,7 +462,7 @@ Para declarar un arreglo en Java, se especifica su _tipo_ seguido de corchetes [
 
 Por ejemplo, para declarar un arreglo de enteros:
 
-```
+```java
 // Arreglo de variables primitivas
 int[] numeros;
 
@@ -472,41 +472,41 @@ Integer[] numeros;
 
 Luego, para crear un arreglo y asignarle memoria, se puede utilizar el operador new:
 
-```
+```java
 numeros = new int[5]; // Crea un arreglo de enteros con capacidad para 5 elementos
 ```
 
 También se puede declarar y crear un arreglo en una sola línea:
 
-```
+```java
 int[] numeros = new int[5];
 ```
 
 ### Inicialización
 Es posible inicializar un arreglo con valores en el momento de la creación:
 
-```
+```java
 int[] numeros = {1, 2, 3, 4, 5}; // Inicializa el arreglo con valores
 ```
 
 ### Acceso a Elementos
 Los elementos de un arreglo se acceden mediante un índice numérico, comenzando desde 0 para el primer elemento. Por ejemplo, para acceder al tercer elemento del arreglo numeros:
 
-```
+```java
 int tercerElemento = numeros[2]; // El índice es 2 para acceder al tercer elemento
 ```
 
 ### Tamaño de un Arreglo
 Se puede obtener el tamaño (longitud) de un arreglo utilizando la propiedad length:
 
-```
+```java
 int tamaño = numeros.length; // Tamaño del arreglo
 ```
 
 ### Iteración a través de un Arreglo
 Se utilizan bucles, como el **for**, para recorrer todos los elementos de un arreglo:
 
-```
+```java
 // Imprime cada elemento del arreglo iterando sobre el índice
 for (int i = 0; i < numeros.length; i++) {
     System.out.println(numeros[i]); 
@@ -521,7 +521,7 @@ for (int numero : numeros) {
 ### Arreglos Multidimensionales
 Java admite arreglos multidimensionales, que son arreglos de arreglos. Por ejemplo, un arreglo de dos dimensiones se declara y crea de la siguiente manera:
 
-```
+```java
 int[][] matriz = new int[3][4]; // Una matriz 3x4
 ```
 
@@ -531,7 +531,7 @@ Los modificadores de acceso controlan la visibilidad y accesibilidad de clases, 
 ### public
 Accesible desde cualquier clase.
 
-```
+```java
 public class MiClase {
     public int miAtributo; // Atributo público
     public void miMetodo() { // Método público
@@ -543,7 +543,7 @@ public class MiClase {
 ### private
 Solo accesible dentro de la misma clase.
 
-```
+```java
 public class MiClase {
     private int miAtributo; // Atributo privado
     private void miMetodo() { // Método privado
@@ -555,7 +555,7 @@ public class MiClase {
 ### Sin Modificador o Paquete (Default)
 Accesible solo dentro del mismo paquete.
 
-```
+```java
 package miPaquete;
 
 public class MiClase {
@@ -566,7 +566,7 @@ public class MiClase {
 }
 ```
 
-```
+```java
 package miOtroPaquete;
 
 import miPaquete.MiClase;
@@ -584,7 +584,7 @@ Si se intenta compilar, arroja el error _error: miMetodo() is not public in MiCl
 ### protected
 Accesible dentro del mismo paquete y por subclases (incluso si están en un paquete diferente).
 
-```
+```java
 package paquete1;
 
 public class ClaseBase {
@@ -594,7 +594,7 @@ public class ClaseBase {
     }
 }
 ```
-```
+```java
 package paquete2;
 
 public class SubClase extends paquete1.ClaseBase {
@@ -619,7 +619,7 @@ Las anotaciones son metadatos que se utilizan para proporcionar información adi
 Java proporciona un conjunto de anotaciones predefinidas que se utilizan comúnmente en aplicaciones y librerías. Algunas de las anotaciones más utilizadas son:
 
 - @Override: Indica que un método anula un método en su clase base.
-```
+```java
 @Override
 public void miMetodo() {
     // Código del método
@@ -627,7 +627,7 @@ public void miMetodo() {
 ```
 - @Deprecated: Marca un elemento (método, clase, etc) como obsoleto, lo que significa que se desaconseja su uso.
 
-```
+```java
 @Deprecated
 public void metodoAntiguo() {
     // Código del método
@@ -635,7 +635,7 @@ public void metodoAntiguo() {
 ```
 - @SuppressWarnings: Suprime advertencias del compilador para elementos específicos, como advertencias no deseadas.
 
-```
+```java
 @SuppressWarnings("unchecked")
 public List<String> obtenerLista() {
     // Código del método
@@ -645,7 +645,7 @@ public List<String> obtenerLista() {
 ### Anotaciones Personalizadas
 Es posible crear tus propias anotaciones personalizadas en Java. Para hacerlo se debe definir una interfaz que actúe como la anotación y marcarla con la anotación @interface.
 
-```
+```java
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME) // Especifica cuándo estará disponible en tiempo de ejecución
@@ -659,7 +659,7 @@ En este ejemplo, creamos la anotación @MiAnotacion que puede aplicarse a métod
 
 Una vez que tenemos definida una anotación personalizada, podemos usarla en el código de la siguiente manera:
 
-```
+```java
 public class MiClase {
 
     @MiAnotacion(autor = "Laura", fecha = "2023-09-01")
@@ -679,7 +679,7 @@ Las anotaciones pueden ser procesadas en **tiempo de compilación** o en **tiemp
 Crear una calculadora simple que acepte dos números y un operador (+, -, *, /) como entrada del consola. Luego, realizar la operación y mostrar el resultado.
 
 Ejemplo de entrada/salida:
-```
+```bash
 Ingrese el primer número: 10
 Ingrese el operador (+, -, *, /): *
 Ingrese el segundo número: 5
@@ -690,7 +690,7 @@ Resultado: 50
 Escribir un programa que permita convertir una temperatura de grados Celsius a grados Fahrenheit o viceversa. Debe solicitar la temperatura y la unidad de entrada, y luego mostrar la temperatura convertida.
 
 Ejemplo de entrada/salida:
-```
+```bash
 Ingrese la temperatura: 25
 Ingrese la unidad de temperatura (C/F): C
 Temperatura en Fahrenheit: 77.0°F
@@ -700,7 +700,7 @@ Temperatura en Fahrenheit: 77.0°F
 Escribir un programa que calcule la suma de todos los números pares entre 1 y un número ingresado por consola. Recordar validar que el número ingresado sea positivo.
 
 Ejemplo de entrada/salida:
-```
+```bash
 Ingrese un número positivo: 10
 La suma de los números pares del 1 al 10 es: 30
 ```
@@ -710,7 +710,7 @@ Escribir un programa que solicite un número y luego muestre la tabla de multipl
 
 Ejemplo de entrada/salida:
 
-```
+```bash
 Ingrese un número: 7
 Tabla de multiplicar del 7:
 7 x 1 = 7
@@ -725,7 +725,7 @@ Crear un programa que cuente la cantidad de palabras en una cadena de texto ingr
 
 Ejemplo de entrada/salida:
 
-```
+```bash
 Ingrese una frase: Hola, esto es un ejemplo.
 Ingrese un separador: 
 Cantidad de palabras: 5
