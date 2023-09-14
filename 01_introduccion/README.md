@@ -133,7 +133,7 @@ public class MiPrograma {
 
 ## Clases y objetos
 
-Las clases son la base de la programación orientada a objetos en Java. Una clase define un objeto y puede contener atributos (propiedades) y métodos (comportamientos). Por ejemplo:
+Las clases son la base de la programación orientada a objetos en Java. Una clase define un objeto y puede contener atributos (propiedades) y métodos (comportamiento). Por ejemplo:
 
 ```java
 public class Persona {
@@ -200,6 +200,15 @@ public class Auto {
 }
 ```
 
+Un método se compone de una **firma** y una **implementación** (si no es _abstracto_). La implementación es el bloque de código asociado (se abarca entre {}), mientras que la firma puede tener los siguientes componentes en orden:
+
+1. [Modificadores de acceso](#modificadores-de-acceso).
+2. Otros **modificadores** opcionales que iremos viendo (_static_, _final_, _abstract_, etc.).
+3. El **tipo** de retorno del método (si es procedimiento: _void_).
+4. El **nombre** del método (por convención se utiliza _camelCase_).
+5. La lista de **parámetros** entre paréntesis y separados por coma (cada uno precedido por su tipo).
+6. Una lista de **excepciones**, si corresponde.
+
 #### El método main
 En Java, cuando una clase tiene definido un método especial **main**, podremos ejecutarla y así se invocará a este método como punto de entrada de la ejecución. La firma del método es la siguiente:
 
@@ -229,6 +238,66 @@ Argumento 3: argumentos
 
 En general sólo implementaremos este método en sólo una clase en nuestro programa, la cual será la clase a ejecutar.
 
+### Constructores
+Los constructores en Java son **métodos especiales** que se utilizan para **inicializar** objetos de una clase. Estos métodos se llaman automáticamente cuando se crea una nueva instancia de la clase (cuando utilizamos el operador _new_, el cual realiza la **instanciación** un objeto).
+
+Los constructores son esenciales en la programación orientada a objetos porque permiten establecer un estado inicial coherente para los objetos, y así nos aseguran que se creen con un estado válido. A su vez podemos realizar la inicialización de los atributos dentro de constructores, lo que evita que se utilicen valores no inicializados. Dado que los constructores pueden aceptar parámetros, podemos personalizar la inicialización de objetos según las necesidades del programa.
+
+#### Definición de Constructores
+Para definir un constructor en Java, debemos seguir las siguientes reglas:
+
+- El nombre del constructor debe coincidir exactamente con el nombre de la clase.
+- Los constructores no tienen un tipo de retorno, ni siquiera void.
+
+A continuación, se muestra un ejemplo simple de un constructor:
+
+```java
+public class MiClase {
+    // Constructor
+    public MiClase() {
+        // Código de inicialización
+    }
+}
+```
+
+#### Constructores con Parámetros
+Pueden aceptar parámetros para inicializar objetos de manera personalizada y así crear objetos con diferentes estados iniciales según las necesidades.
+
+```java
+public class Persona {
+    private String nombre;
+    private int edad;
+    
+    // Constructor con parámetros
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+}
+```
+
+#### Uso de Constructores
+Para crear una instancia de una clase y llamar a su constructor, utilizamos la palabra clave _new_, seguida del nombre del constructor. Por ejemplo:
+
+```java
+Persona persona1 = new Persona("Juana", 30);
+```
+Así creamos un nuevo objeto _Persona_ llamado _persona1_ utilizando el constructor con dos parámetros (String e int).
+
+#### Constructor por Defecto
+Si no definimos ningún constructor en una clase, el compilador proporcionará un constructor por defecto sin argumentos automáticamente. Este constructor por defecto inicializa los campos con valores predeterminados (por ejemplo, 0 para enteros, null para objetos, etc.) y simplemente invoca al constructor de la superclase (_super();_).
+
+#### Sobrecarga de Constructores
+En Java podemos tener múltiples constructores en una clase, siempre y cuando tengan diferentes parámetros (firma). Esto se conoce como **sobrecarga de constructores**. Podés proporcionar diferentes formas de inicializar objetos según sea necesario.
+
+**Atención**: Si una clase tiene definido al menos un constructor, el compilador no provee un constructor por defecto. Por lo tanto, si definimos un constructor con parámetros, eso implica que no podremos inicializar un objeto de esa clase con un constructor sin parámetros.
+
+```java
+Persona persona1 = new Persona();   // Error de compilación, porque Persona no tiene constructor sin parámetros definido.
+```
+
+### Ejercicio: Constructores de Libro
+Crear una clase llamada Libro con los atributos _titulo_, _autor_ y _añoPublicacion_. Definir un constructor que acepte solo el título y el autor, y establezca el añoPublicacion en el año actual (ver LocalDate.now().getYear()). Luego crear otro constructor que acepte todos los atributos (titulo, autor y añoPublicacion). Utilizar la sobrecarga de constructores para crear dos objetos Libro, uno con el año de publicación especificado y otro sin especificarlo. Mostrar los detalles de ambos libros.
 
 ## Variables Primitivas y Referencias
 ### Variables Primitivas
@@ -307,6 +376,56 @@ Investigando la herramienta _Scanner_ que trae Java, escribir un programa que te
 - El otro paquete se llamará _salida_ y contiene una clase _SalidaConsola_ que simplemente imprime cadenas en consola con un método _mostrar_.
 
 El programa recibe entonces un número X cuando se ejecuta. Luego, solicitará X entradas de texto que serán ingresadas por teclado y a medida que se ingresan se muestran en la misma consola.
+
+## Expresiones, sentencias y bloques
+
+### Expresiones
+Las expresiones (_expressions_) son fragmentos de código que producen un valor (pueden evaluarse a algún valor). Pueden ser tan simples como una constante o más complejas como una operación matemática. Algunos ejemplos de expresiones en Java incluyen:
+
+```java
+int x = 5; // Una expresión de asignación
+int y = x + 3; // Una expresión matemática
+String mensaje = "Hola, mundo!"; // Una expresión de asignación de cadena
+```
+En los ejemplos, las expresiones asignan valores a variables o realizan operaciones matemáticas y de cadena.
+
+### Sentencias
+Las sentencias (_statements_) son instrucciones que realizan acciones en un programa. Cada sentencia termina con un punto y coma (;) y conforma una unidad completa de ejecución. Algunos ejemplos de sentencias incluyen:
+
+```java
+int numero = 10; // Una sentencia de declaración y asignación
+System.out.println("Este es un mensaje"); // Una sentencia de salida
+if (numero > 5) {
+    System.out.println("El número es mayor que 5"); // Una sentencia condicional
+}
+```
+Las sentencias son la forma en que controlamos el flujo de un programa, tomando decisiones y realizando acciones. Podemos encontrarnos sentencias de:
+- Asignación
+- Declaración
+- Operación ++ o --
+- Expresiones
+- Control de flujo (condicionales, bucles)
+
+### Bloques
+Los bloques (_blocks_) son grupos de cero o más sentencias encerradas entre llaves {}. Los bloques se utilizan para agrupar múltiples sentencias y crear áreas de alcance (_scope_) para las variables. Pueden utilizarse en cualquier lugar que pueda usarse una sentencia. Aquí hay un ejemplo de un bloque:
+
+```java
+public class EjemploBloque {
+    public static void main(String[] args) {
+        int x = 5;
+        {
+            int y = 10;
+            System.out.println("x: " + x); // x: 5
+            System.out.println("y: " + y); // y: 10
+        }
+        // La variable 'y' no está disponible fuera del bloque
+        System.out.println("x: " + x); // x: 5
+        // System.out.println("y: " + y); // Esto generará un error
+    }
+}
+```
+En este ejemplo, las variables x e y están en diferentes _scopes_ debido a los bloques. La variable y solo es accesible dentro del bloque en el que se declara.
+
 
 ## Estructuras de Control
 ### Estructura if
@@ -524,6 +643,76 @@ Java admite arreglos multidimensionales, que son arreglos de arreglos. Por ejemp
 ```java
 int[][] matriz = new int[3][4]; // Una matriz 3x4
 ```
+
+## Tipos enumerables
+
+Los tipos enumerables (_enum types_) son una forma poderosa de definir un conjunto fijo de valores constantes que representan opciones o categorías específicas. Los tipos enumerables son útiles cuando necesites asegurarte de que una variable solo pueda tomar valores de un conjunto predefinido.
+
+### Definición de un Enumerable
+Para crear un tipo enumerable en Java utilizamos la palabra clave **enum**.
+
+```java
+enum DiaDeLaSemana {
+    LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO
+}
+```
+Así efinimos un tipo enumerable llamado _DiaDeLaSemana_ con siete valores posibles que representan los días de la semana.
+
+### Usando un Enumerable
+Una vez que hayas definido un tipo enumerable, podés declarar variables utilizando este tipo y asignarles uno de los valores enumerados. Por ejemplo:
+
+```java
+DiaDeLaSemana dia = DiaDeLaSemana.MARTES;
+```
+Aquí declaramos una variable _dia_ de tipo _DiaDeLaSemana_ y le hemos asignado el valor _MARTES_.
+
+### Comparación de Valores
+Podemos comparar valores enumerados utilizando el operador de igualdad (==). Por ejemplo:
+
+```java
+if (dia == DiaDeLaSemana.LUNES) {
+    System.out.println("Es el comienzo de la semana.");
+} else if (dia == DiaDeLaSemana.VIERNES) {
+    System.out.println("¡Es viernes! Fin de semana a la vista.");
+} else {
+    System.out.println("Es un día normal.");
+}
+```
+
+### Iteración a través de Valores
+Podemos iterar a través de todos los valores enumerados utilizando un bucle _for-each_. Por ejemplo:
+
+```java
+for (DiaDeLaSemana dia : DiaDeLaSemana.values()) {
+    System.out.println(dia);
+}
+```
+Esto imprimirá todos los valores enumerados en orden.
+
+### Métodos y Campos en Enumerables
+Podemos agregar métodos y campos a los tipos enumerables para hacerlos más útiles. Por ejemplo, podríamos agregar un método para obtener el día siguiente:
+
+```java
+enum DiaDeLaSemana {
+    LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO;
+
+    public DiaDeLaSemana siguiente() {
+        if (this.ordinal() == DiaDeLaSemana.values().length - 1) {
+            return DiaDeLaSemana.LUNES;
+        } else {
+            return DiaDeLaSemana.values()[this.ordinal() + 1];
+        }
+    }
+}
+
+DiaDeLaSemana dia = DiaDeLaSemana.MIERCOLES;
+DiaDeLaSemana siguienteDia = dia.siguiente(); // Devuelve JUEVES
+```
+
+### Ventajas de los Tipos Enumerables
+- Los tipos enumerables proporcionan un conjunto fijo de opciones, lo que hace que el código sea **más legible y menos propenso a errores** (código más limpio y seguro).
+- Ayudan a **prevenir valores no válidos**, ya que solo se pueden asignar valores enumerados válidos a las variables de tipo enumerable.
+- Facilitan la **iteración a través de opciones** y la realización de **operaciones** basadas en el valor enumerado.
 
 ## Modificadores de Acceso
 Los modificadores de acceso controlan la visibilidad y accesibilidad de clases, atributos y métodos dentro de un programa.
