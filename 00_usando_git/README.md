@@ -34,11 +34,11 @@ $ git clone HTTPS_del_repo
 ### Commit 
 
 ```bash
-$ git stage --all
+$ git add
 ```
 
 ```bash
-$ git commit -am "mensaje_del_commit"
+$ git commit -m "mensaje_del_commit"
 ```
 
 ### Push
@@ -83,3 +83,8 @@ c. Realizar el merge desde _nombre_rama_ a la rama actual (main)
 ```bash
 $ git merge nombre_rama
 ```
+
+### Gitignore
+
+Un archivo ```.gitignore ``` especifica que archivos o carpetas Git deberá ignorar. Estos archivos son aquellos que intencionalmente queremos fuera de seguimiento.
+Para crear un archivo ```.gitignore``` local, hay que crear un archivo de texto y asignarle el nombre ".gitignore". Luego, incluir los archivos o carpetas que deseamos que Git ignore.
