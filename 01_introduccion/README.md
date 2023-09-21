@@ -843,6 +843,32 @@ Los modificadores de acceso permiten controlar el encapsulamiento y la seguridad
 - Usar protected cuando se desea que las subclases tengan acceso a ciertos miembros.
 - Usar el modificador sin especificar para permitir el acceso dentro del mismo paquete.
 
+### Getters y Setters
+
+En la jerga de la POO podemos identificar ciertos métodos que permiten acceder y modificar atributos una clase. Dado que siempre conviene definir los atributos como privados y así ocultarlos del acceso externo, es una práctica habitual definir métodos para acceder al valor de un atributo (**getters**) y para modificarlo (**setters**). El nombre proviene del prefijo común que suelen tener los nombres de estos métodos.
+
+```java
+public class MiClase {
+    private int campo1;         // Atributo privado sin acceso externo
+
+    public int getCampo1() {    // Getter del atributo campo1
+        return this.campo1;
+    }
+
+    public void setCampo1(int valor) {    // Setter del atributo campo1
+        this.campo1 = valor;
+    }
+}
+```
+
+En el ejemplo podemos ver que la única forma de acceder al _campo1_ desde fuera de la clase es utilizando el método _getCampo1_, mientras que para modificarlo debemos utilizar el método _setCampo1_.
+
+```java
+MiClase obj1 = MiClase();
+obj1.setCampo1(15);
+System.out.println(obj1.getCampo1());   // Muestra el valor de campo1: 15
+```
+
 ## Anotaciones
 Las anotaciones son metadatos que se utilizan para proporcionar información adicional sobre elementos del código fuente, como clases, métodos, variables, etc. Son usualmente utilizadas para documentación, configuración y procesamiento durante la compilación o en tiempo de ejecución. Son etiquetas que se colocan directamente antes de elementos del código fuente. Proporcionan información adicional sobre esos elementos y pueden ser interpretadas por varias herramientas y librerías. Las anotaciones comienzan con el símbolo **@** seguido del nombre de la anotación.
 
