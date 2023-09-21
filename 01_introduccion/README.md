@@ -255,6 +255,28 @@ Argumento 3: argumentos
 
 En general sólo implementaremos este método en sólo una clase en nuestro programa, la cual será la clase a ejecutar.
 
+#### Argumentos variables
+
+Podemos definir un parámetro con un constructo particular (_varargs_) en un método para aceptar una cantidad de argumentos variable. Se realiza con el sufijo **...** luego del tipo de dato del parámetro, lo cual es equivalente a definir a ese parámetro como un arreglo. La ventaja de utilizar esta notación es que no debemos inicializar un arreglo para pasar como argumento al momento de invocar este método.
+
+```java
+public class Prueba {
+    public static int sumarArgumentos(Integer... args) {    // args es un Integer[]
+        int total = 0;
+        for (int i=0; i < args.length; i++) {
+            total = total + args[i];
+        }
+        return total;
+    }
+    public static void main(String[] args) {
+        int x;
+        x = sumarArgumentos(1, 2, 3);   // x = 6
+        x = sumarArgumentos(4);         // x = 4
+        x = sumarArgumentos();          // x = 0
+    }
+}
+```
+
 ### Constructores
 Los constructores en Java son **métodos especiales** que se utilizan para **inicializar** objetos de una clase. Estos métodos se llaman automáticamente cuando se crea una nueva instancia de la clase (cuando utilizamos el operador _new_, el cual realiza la **instanciación** un objeto).
 
@@ -648,6 +670,9 @@ Es posible inicializar un arreglo con valores en el momento de la creación:
 
 ```java
 int[] numeros = {1, 2, 3, 4, 5}; // Inicializa el arreglo con valores
+```
+```java
+metodo1(int[]{1, 2, 3, 4, 5});  // Inicializa un arreglo como argumento de metodo1
 ```
 
 ### Acceso a Elementos
