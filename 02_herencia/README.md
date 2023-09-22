@@ -133,7 +133,7 @@ Crear una superclase llamada _Figura_ con un campo _nombre_ y un método _calcul
 
 ## Sobreescritura
 
-La sobreescritura (**overriding**) de métodos permite a una subclase proporcionar su propia variación de un método heredado de su superclase. En Java, se utiliza la vinculación dinámica de métodos (**dynamic binding**) que resuelve en **tiempo de ejecución** qué versión o implementación de un método debe ejecutarse.
+La sobreescritura (**overriding**) de métodos permite a una subclase proporcionar su propia variación de un método heredado de su superclase. En Java, se utiliza la vinculación dinámica de métodos (**dynamic binding**) que resuelve en **tiempo de ejecución** qué versión de implementación de un método debe ejecutarse.
 
 ### ¿Cuándo ocurre?
 La sobreescritura de métodos ocurre cuando una subclase proporciona una implementación específica para un **método de instancia** que ya está definido en su superclase y es visible por la subclase. Esto **no aplica para métodos de clase (estáticos)**, ya que son estáticos y se _ocultan_, no se _sobreescriben_. Para que una sobreescritura sea válida deben cumplirse las siguientes condiciones:
@@ -228,3 +228,85 @@ Definir dentro de la clase _Viaje_ el método _tiempoDeDemora_, que retorne la c
 a) Especializando la clase _Viaje_ en función del tipo de viaje.
 
 b) Sin especializar la clase _Viaje_, relacionándola con la clase _TipoDeViaje_, que está especializada por cada tipo de viaje.
+
+# Conversión de tipos
+
+Finalizamos esta sección analizando lo que significa la conversión de tipos o **type casting** en Java. Este concepto es necesario para comprender las reglas que utiliza el lenguaje para determinar cuándo es posible convertir un tipo de dato en otro de forma segura. 
+
+[Especificación para conversión en Java 8](https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html)
+
+> En Java, las conversiones de tipos se dividen en dos categorías: ampliación (**widening**) y estrechamiento (**narrowing**). A su vez, podemos distinguir el tratamiento entre variables primitivas y de referencia.
+
+## Conversión de Tipos primitivos
+
+### Widening
+Es **la conversión de un tipo de dato más pequeño en uno más grande sin pérdida de datos**. Esta conversión se realiza automáticamente de forma **implícita** cuando se asigna un valor de un tipo más pequeño a un tipo más grande. Esto se debe a que no hay riesgo de pérdida de información, ya que el rango de valores del tipo más pequeño es siempre un subconjunto del rango del tipo más grande.
+
+```java
+int numeroInt = 13;
+double numeroDouble = numeroInt;    // Conversión automática de int a double
+System.out.println(numeroDouble);   // Resultado: 13.0
+```
+En este ejemplo, el valor de _numeroInt_ se amplía a _numeroDouble_ sin ningún problema.
+
+### Narrowing
+Es **la conversión de un tipo de dato más grande en uno más pequeño**. Esta conversión puede resultar en la **pérdida de información** si el valor no se puede representar con precisión en el tipo de destino. Por lo tanto, el estrechamiento debe realizarse de manera **explícita** en Java usando paréntesis y especificando el tipo de destino.
+
+```java
+double numeroDouble = 13.55;
+int numeroInt = (int) numeroDouble;     // Conversión explícita de double a int
+System.out.println(numeroInt);          // Resultado: 13
+```
+En este ejemplo, el valor de _numeroDouble_ se estrecha a _numeroInt_, y **la parte decimal se trunca**.
+
+## Conversión de Tipos de Referencia
+
+La conversión de tipos para variables de referencia se utiliza contemplando la jerarquía de herencia. Es necesario que los tipos de datos que deseamos convertir estén **relacionados a través de la herencia**, de lo contrario no podremos hacerlo.
+
+### Widening
+Se denomina conversión ascendente o **upcasting** cuando se pasa de una referencia de una clase derivada a una referencia de una superclase o interfaz implementada. Esto se hace de manera **implícita** y **es siempre segura**, ya que la clase derivada es una extensión de la clase base.
+
+```java
+class Animal { }
+class Perro extends Animal { }
+
+Perro miPerro = new Perro();
+Animal miAnimal = miPerro;      // Upcasting implícito
+```
+
+### Narrowing
+Se denomina conversión descendente o **downcasting** cuando pasamos de una referencia de una superclase o interfaz a una referencia de una clase derivada. Esto se hace de manera **explícita** y **puede generar una excepción _ClassCastException_** si la conversión no es válida.
+
+```java
+class Animal { }
+class Perro extends Animal { }
+
+Animal miAnimal = new Perro();
+Perro miPerro = (Perro) miAnimal;   // Downcasting explícito
+```
+
+## Ejercicio: Corregir el _ClassCastException_
+Supongamos que tenemos una jerarquía de clases que incluye una clase base _Vehiculo_ y dos clases derivadas, _Auto_ y _Moto_. Intentaremos realizar un downcasting de un objeto _Vehiculo_ a la clase _Auto_, lo cual generará un error:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Vehiculo[] vehiculos = new Vehiculo[2];
+        vehiculos[0] = new Moto();      // Upcasting implícito
+        vehiculos[1] = new Auto();      // Upcasting implícito
+        
+        for (Vehiculo vehiculo : vehiculos) {
+            vehiculo.acelerar();
+            Auto auto = (Auto) vehiculo;  // Downcasting: error en tiempo de ejecución
+            auto.subirVentanas();         // Método exclusivo de Auto
+        }
+    }
+}
+```
+El código fuente está disponible en la [carpeta src](./src/) de esta unidad.
+
+En este ejemplo, inicialmente realizamos upcasting implícitos al asignar un objeto de la clase _Auto_ y _Moto_ a una variable de la clase base _Vehiculo_. Sin embargo, cuando intentamos hacer un downcasting de _vehiculo_ a _Auto_, Java generará un error en tiempo de ejecución, ya que el primer objeto subyacente es de tipo _Moto_. Esto genera una excepción _ClassCastException_. El código después del intento de downcasting no se ejecutará debido a este error.
+
+- a) Probar qué sucede si eliminamos la línea del downcasting y cambiamos la última línea por: `vehiculo.subirVentanas()`.
+- b) Corregir el error modificando la clase _Main_ contemplando que sólo debemos subir las ventanas cuando tengamos un objeto de _Auto_.
+- c) Agregar un parámetro de tipo _int_ en el método _acelerar()_ y modificar el _main_ para que suceda una conversión de estrechamiento con ese parámetro.

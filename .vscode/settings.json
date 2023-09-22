@@ -1,0 +1,8 @@
+{
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.project.sourcePaths": [
+        "00_usando_git\\src",
+        "02_herencia\\src",
+        "04_igualdad_y_copia\\src",
+    ]
+}
