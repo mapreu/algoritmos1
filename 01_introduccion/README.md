@@ -342,7 +342,7 @@ Crear una clase llamada Libro con los atributos _titulo_, _autor_ y _añoPublica
 
 Los miembros de clase y de instancia son dos tipos de **atributos** y **métodos** que se definen dentro de una clase.
 
-- **Miembros de Clase**: También conocidos como variables o métodos **estáticos**, los miembros de clase pertenecen a la clase en sí y no a las instancias individuales de la clase (objetos). Estos miembros se comparten entre todas las instancias de la clase y se pueden acceder directamente utilizando el nombre de la clase, es decir, sin la necesidad de instanciar un objeto de la clase. Para definir un atributo o método de este estilo se utiliza el modificador **static** luego del modificador de accesibilidad. Por ejemplo, un atributo de clase se puede utilizar para contar cuántas instancias de la clase se han creado.
+- **Miembros de Clase**: También conocidos como variables o métodos **estáticos**, los miembros de clase pertenecen a la clase en sí y no a las instancias individuales de la clase (objetos). Estos miembros se comparten entre todas las instancias de la clase y se pueden acceder directamente utilizando el nombre de la clase, es decir, sin la necesidad de instanciar un objeto de la clase. Para definir un atributo o método de este estilo se utiliza el modificador **static**. Por ejemplo, un atributo de clase se puede utilizar para contar cuántas instancias de la clase se han creado.
 
 - **Miembros de Instancia**: Los miembros de instancia pertenecen a las instancias individuales de una clase. Cada objeto creado a partir de esa clase tiene su propia copia de los atributos de instancia, lo que define su estado. Estos miembros se definen sin la palabra clave _static_ y se acceden a través de una instancia específica de la clase.
 
@@ -372,12 +372,14 @@ boolean esMayor = true; // Variable primitiva de tipo boolean
 ```
 
 ### Variables de Referencia
-Las variables de referencia en Java almacenan direcciones de memoria donde se encuentra el objeto. En lugar de almacenar el objeto directamente, estas variables apuntan al objeto en la memoria. Estas variables se utilizan para acceder a objetos y llamar a sus métodos.
+Las variables de referencia en Java **almacenan direcciones de memoria** donde se encuentra el objeto. En lugar de almacenar el objeto directamente, estas variables apuntan al objeto en la memoria. Estas variables se utilizan para acceder a objetos y llamar a sus métodos.
 
 ```java
 Persona juana = new Persona("Juana", 25);
 ```
 En este caso, juana es una variable de referencia que apunta a un objeto de tipo Persona.
+
+> **IMPORTANTE**: Toda variable de referencia por defecto apunta a **_null_**. Por lo tanto, siempre debemos inicializarlas antes de utilizarlas, de lo contrario veremos la excepción _NullPointerException_.
 
 ### Clases Relacionadas con Variables Primitivas
 Java proporciona **clases relacionadas con variables primitivas** para realizar operaciones y proporcionar funcionalidad adicional. Estas clases están en el paquete java.lang y son parte del lenguaje de Java. Algunas de las clases relacionadas con variables primitivas son:
