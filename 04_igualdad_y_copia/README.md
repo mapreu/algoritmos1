@@ -12,7 +12,7 @@ Veamos el siguiente ejemplo:
 
 ```java
 Integer a = 10;
-Integer b = new Integer(10);
+Integer b = Integer.valueOf(10);
 System.out.println(a == b);         // false
 System.out.println(a.equals(b));    // true
 ```

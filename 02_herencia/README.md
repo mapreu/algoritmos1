@@ -285,6 +285,20 @@ Animal miAnimal = new Perro();
 Perro miPerro = (Perro) miAnimal;   // Downcasting explícito
 ```
 
+### Relación de tipos en Arreglos
+Si bien no entraremos en detalle en este curso sobre los conceptos de covarianza, contravarianza e invarianza, mencionaremos que los arreglos en Java son **covariantes** respecto al tipo de dato de sus elementos. Esto significa que respetan el orden que puede existir con los tipos de datos de elementos. Es importante tener claro esto cuando intentemos convertir este tipo de referencias. Veamos un ejemplo para clarificar.
+
+```java
+Number[] numeros;   // Arreglo de elementos de tipo Number
+Integer[] enteros = new Integer[3];  // Arreglo de elementos de tipo Integer
+numeros = enteros;  // Asignación OK. Integer[] es subtipo de Number[]
+numeros[0] = 1;     // Asignación OK. Implícitamente es Integer.valueOf(1)
+numeros[1] = 2.5;   // Arroja excepción ArrayStoreException
+```
+Es correcta la asignación de _enteros_ a la variable _numeros_ porque _Integer[]_ es subtipo de _Number[]_, al igual que _Integer_ es subtipo de _Number_, por ello se dice que son covariantes. El error en **tiempo de ejecución** (_ArrayStoreException_) ocurre porque el literal 2.5 es implícitamente _Double.valueOf(2.5)_, lo que devuelve un objeto de tipo _Double_, y ese tipo no tiene ninguna relación con _Integer_. Por eso no puede hacerse la conversión para insertarlo en el arreglo. Esta es una desventaja que resulta de disponer esta característica en arreglos de Java, porque **no valida esa conversión ilegal en tiempo de compilación**.
+
+> Es recomedable inclinarse a utilizar tipos genéricos (_Generics_) antes que arreglos. Los veremos más adelante.
+
 ## Ejercicio: Corregir el _ClassCastException_
 Supongamos que tenemos una jerarquía de clases que incluye una clase base _Vehiculo_ y dos clases derivadas, _Auto_ y _Moto_. Intentaremos realizar un downcasting de un objeto _Vehiculo_ a la clase _Auto_, lo cual generará un error:
 
