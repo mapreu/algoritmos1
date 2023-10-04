@@ -252,10 +252,12 @@ Los tipos genéricos o paramétricos ofrecen una herramienta muy útil al moment
 - **Reutilización de código**: Podemos escribir componentes genéricos que funcionen con una amplia variedad de tipos de datos.
 - **Legibilidad del código**: Hacen que el código sea más claro y autodocumentado al indicar explícitamente qué tipo de datos se espera.
 
-> **Lectura de interés**: _Effective Java 3rd, de Joshua Bloch_:
-> - Item 26: Don’t use raw types
-> - Item 27: Eliminate unchecked warnings
-> - Item 28: Prefer lists to arrays
-> - Item 29: Favor generic types
-> - Item 30: Favor generic methods
-> - Item 31: Use bounded wildcards to increase API flexibility
+> **Lectura de interés**: 
+> - [The Java Tutorials. Lesson: Generics](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
+> - _Effective Java 3rd, de Joshua Bloch_
+>   - Item 26: Don’t use raw types
+>   - Item 27: Eliminate unchecked warnings
+>   - Item 28: Prefer lists to arrays
+>   - Item 29: Favor generic types
+>   - Item 30: Favor generic methods
+>   - Item 31: Use bounded wildcards to increase API flexibility
