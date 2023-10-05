@@ -15,5 +15,11 @@ Lxs alentamos a participar activamente, hacer preguntas, plantear dudas, aportar
 
 # Contenido
 
-0. [Usando GIT](00_usando_git/README.md)
-1. [Introducción a Java](01_introduccion/README.md)
+0. [Usando GIT](./00_usando_git/README.md)
+1. [Introducción a Java](./01_introduccion/README.md)
+2. [Herencia](./02_herencia/README.md)
+3. [Polimorfismo](./03_polimorfismo/README.md)
+4. [Igualdad y Copia](./04_igualdad_y_copia/README.md)
+5. [Interfaces y Clases abstractas](./05_interfaces_y_clases_abstractas/README.md)
+6. [Generics](./06_generics/README.md)
+7. [Excepciones](./07_excepciones/README.md)
