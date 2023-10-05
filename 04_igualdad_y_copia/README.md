@@ -233,6 +233,91 @@ e) Crear un programa de prueba (Main) que:
 - Cree dos objetos de _Estudiante_ con misma matrícula y verifique si son iguales.
 - También, realizar una comparación de identidad (usando ==) de al menos dos de los objetos y mostrar un mensaje que indique si son iguales o diferentes.
 
+## Ordenando elementos
+Así como determinar la igualdad de dos objetos es un concepto clave, también puede serlo compararlos a través de cierta relación de **orden**. En casos donde sea necesario definir esta relación, podemos utilizar la [interfaz](../05_interfaces_y_clases_abstractas/README.md) que trae incorporada Java [Comparable](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html) que nos permitirá aprovechar los algoritmos de ordenamiento predefinidos en las [Colecciones de Java](../08_colecciones/README.md).
+
+```java
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+```
+La interfaz _Comparable_ de Java es un [tipo genérico](../06_generics/README.md) y contiene un único método [**_compareTo_**](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html#compareTo-T-) que debemos sobreescribir cuando la implementamos. Este método compara al objeto con uno recibido por parámetro y retorna:
+- Un **entero negativo** si este objeto es menor al recibido por parámetro.
+- Un **0** si este objeto es igual al recibido por parámetro.
+- Un **entero positivo** si este objeto es mayor al recibido por parámetro.
+
+> Si el objeto recibido por parámetro no puede compararse con el objeto actual, el método lanza la excepción _ClassCastException_.
+
+### Restricciones del compareTo
+Al momento de implementar el método _compareTo_ debemos respetar las siguientes restricciones descriptas en la documentación de Java:
+
+- Asegurarnos que `sgn(x.compareTo(y)) == -sgn(y.compareTo(x))` para todos los _x_ e _y_.
+- Asegurarnos que la relación es transitiva. Si `x.compareTo(y)>0` y `y.compareTo(z)>0` implica que `x.compareTo(z)>0`.
+- Asegurarnos que `x.compareTo(y)==0` implica que `sgn(x.compareTo(z)) == sgn(y.compareTo(z))`, para todos los _z_.
+- Es **muy recomendable** que sea consistente con la igualdad definida en _equals_: `(x.compareTo(y)==0) == x.equals(y)`
+
+> La operación _sgn_ es la función matemática _signum_ que devuelve -1, 0 o 1 según si el parámetro es negativo, 0 o positivo.
+
+Por ejemplo, si quisiéramos definir el orden en las personas a través del número de documento, podríamos hacer lo siguiente.
+
+```java
+public class Persona implements Comparable<Persona> {
+    // Atributos y métodos...
+    public int compareTo(Persona otro) {
+        // Asumiendo que documento es tipo int
+        return this.getDocumento() - otro.getDocumento();
+    }
+}
+```
+Si el atributo de documento fuera un _Integer_ también podríamos habernos apoyado en el _compareTo_ de esa clase, ya que _Integer_ implementa la interfaz _Comparable<Integer>_. El retorno de nuestro _compareTo_ sería: `this.getDocumento().compareTo(otro.getDocumento())`.
+
+### Usando un comparador
+En casos donde debamos comparar objetos de clases que **no implementan la interfaz _Comparable_**, o aún si lo hicieran y queremos utilizar **otro criterio de orden** diferente al _orden natural_ definido en el _compareTo_, podemos utilizar la interfaz [_Comparator_](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html).
+
+```java
+public interface Comparator<T> {
+    int compare(T o1, T o2);
+}
+```
+Esta interfaz provee un método **_compare_** que recibe dos objetos por parámetro y los compara de forma similar que el _compareTo_. Deberá retornar 0 si son iguales, un entero negativo si el primero es menor al segundo, y un entero positivo si el primero es mayor. 
+
+Veamos cómo se implementa la comparación en la clase _Integer_.
+
+```java
+public int compareTo(Integer anotherInteger) {
+    return compare(this.value, anotherInteger.value);
+}
+
+public static int compare(int x, int y) {
+    return (x < y) ? -1 : ((x == y) ? 0 : 1);
+}
+```
+Notemos que _Integer_ define en el método estático _compare_ la relación de orden, pero no tiene relación con el _compare_ de _Comparator_ porque no es subtipo de ella. Luego en el _compareTo_ (recordemos que esta clase sí implementa _Comparable_) invoca al método estático. 
+
+Ahora veamos cómo podríamos utilizar _Comparator_ para proveer otro criterio de orden en nuestra clase _Persona_.
+
+```java
+class ComparadorEdad implements Comparator<Persona> {
+    public int compare(Persona persona1, Persona persona2) {
+        // Asumiendo que edad es tipo Integer
+        return persona1.getEdad().compareTo(persona2.getEdad());
+    }
+}
+```
+El nuevo _ComparadorEdad_ implementa el método _compare_ que nos exige la interfaz _Comparator_ y nos apoyamos en el _compareTo_ de la clase _Integer_ para ordenar eventualmente las personas por su edad. Para utilizar el comparador podríamos invocar el método _Arrays.sort_ que acepta como segundo argumento un objeto de tipo _Comparator_.
+
+```java
+import java.util.Arrays;
+public static void main(String[] args) {
+    Persona[] personas = new Persona[10];
+    // Se agregan personas al arreglo...
+    Arrays.sort(personas, new ComparadorEdad());
+}
+```
+En este ejemplo, el método _Arrays.sort_ invocará en su implementación el método _compare_ de nuestro _ComparadorEdad_ para ordenar los elementos del arreglo _personas_.
+
+> Definir una relación de orden en nuestras clases a través de estas interfaces es de gran utilidad para aprovechar los **algoritmos de ordenamiento que incluye Java** en sus librerías.
+
 # La copia
 
 Similar a la igualdad, existen dos tipos o formas de copias de objetos.
