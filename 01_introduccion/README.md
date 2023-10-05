@@ -22,15 +22,15 @@ Recordemos que la POO se basa en los siguientes conceptos:
 ## Compilación y Ejecución de un Programa Java
 Para escribir, compilar y ejecutar programas Java en Visual Studio Code, podemos seguir estos pasos:
 
-- **Instalar el Kit de Desarrollo de Java (JDK)**: Asegurate de tener el JDK instalado en tu computadora. Podés descargarlo desde [aquí](https://www.oracle.com/java/technologies/javase-downloads.html) e instalarlo siguiendo las instrucciones.
+- **Instalar el Kit de Desarrollo de Java (JDK)**: Asegurarse de tener el JDK instalado en la computadora. Se puede descargar desde [aquí](https://www.oracle.com/java/technologies/javase-downloads.html) e instalarlo siguiendo las instrucciones.
 
-- **Instalar Visual Studio Code**: Si aún no tenés Visual Studio Code, podés descargarlo e instalarlo desde [Visual Studio Code](https://code.visualstudio.com/).
+- **Instalar Visual Studio Code**: Si aún no está instalado Visual Studio Code, se puede descargar e instalarlo desde [Visual Studio Code](https://code.visualstudio.com/).
 
-- **Instalar la Extensión de Java**: Abrí Visual Studio Code, en a la pestaña de extensiones (icono de cuadrado en la barra lateral izquierda), buscá "Java Extension Pack" y hacé clic en "Instalar".
+- **Instalar la Extensión de Java**: Abrir Visual Studio Code, en a la pestaña de extensiones (icono de cuadrado en la barra lateral izquierda), buscar "Java Extension Pack" y hacer clic en "Instalar".
 
-- **Crear un Nuevo Proyecto**: En Visual Studio Code creá una carpeta para tu proyecto. Luego, crea un archivo con extensión **.java**. Podés hacerlo haciendo clic derecho en la carpeta y seleccionando "Nuevo archivo". Una vez hayas generado el archivo, verás que aparece en la vista de _Explorador_ la sección _Java Projects_ que facilita la organización del proyecto Java.
+- **Crear un Nuevo Proyecto**: En Visual Studio Code crear una carpeta para el proyecto. Luego, crear un archivo con extensión **.java**. Se puede hacer haciendo clic derecho en la carpeta y seleccionando "Nuevo archivo". Una vez se haya generado el archivo, aparecerá en la vista de _Explorador_ la sección _Java Projects_ que facilita la organización del proyecto Java.
 
-- **Escribir tu Programa Java**: Abrí el archivo .java y escribí tu código Java. Por ejemplo:
+- **Escribir un Programa Java**: Abrir el archivo .java y escribir algún código Java. Por ejemplo:
 
 ```java
 public class MiPrograma {
@@ -40,19 +40,19 @@ public class MiPrograma {
 }
 ```
 
-- **Compilar y Ejecutar**: En una terminal en Visual Studio Code (menú "Terminal" > "Nueva Terminal"), navegá a la carpeta de tu proyecto y compilá tu programa Java usando el comando:
+- **Compilar y Ejecutar**: En una terminal en Visual Studio Code (menú "Terminal" > "Nueva Terminal"), navegar a la carpeta del proyecto (no suele ser necesario) y compilar el programa Java usando el comando:
 
 ```bash
 $ javac MiPrograma.java
 ```
-Esto generará un archivo .class que contiene el _bytecode_ Java, es un archivo binario que puede ejecutarse por la _JVM_ (Java Virtual Machine) que viene en el entorno de ejecución (_JRE_, Java Runtime Environment).
+Esto generará un archivo .class que contiene el _bytecode_ Java, es un archivo binario que se puede ejecutar con la _JVM_ (Java Virtual Machine) que viene en el entorno de ejecución (_JRE_, Java Runtime Environment).
 
-- **Ejecutar el Programa**: Para ejecutar el programa, usá el comando:
+- **Ejecutar el Programa**: Para ejecutar el programa, usar el comando:
 
 ```bash
 $ java MiPrograma
 ```
-Deberías ver la salida "¡Hola, Mundo!" en la terminal.
+Debería aparecer la salida "¡Hola, Mundo!" en la terminal.
 
 ## Estructura de Archivos y Paquetes
 
@@ -94,17 +94,17 @@ class MiClase {
 
 ### Ejercicio: Crear un paquete
 
-Incorporá el programa HolaMundo en un paquete llamado _introduccion_ y probá el proceso completo de compilarlo y ejecutarlo. Para lograrlo deberás contemplar que la estructura de archivos sea consistente con esta modificación (el archivo _MiPrograma.java_ debería ahora incluirse en una carpeta _introduccion_).
+Incorporar el programa HolaMundo en un paquete llamado _introduccion_ y probar el proceso completo de compilarlo y ejecutarlo. Para lograrlo hay que contemplar que la estructura de archivos sea consistente con esta modificación (el archivo _MiPrograma.java_ debería ahora incluirse en una carpeta _introduccion_).
 
 ### Import 
-El operador **import** es importante cuando se trabaja con clases de bibliotecas estándar de Java o definidas en otros paquetes. Se utiliza para traer miembros de otros paquetes a tu scope actual (la clase donde estás importando). Esto permite que tu código acceda y utilice las clases y tipos definidos en esos paquetes. Sin embargo, no necesitás usar import para las clases que pertenecen al mismo paquete o están en el paquete _java.lang_, ya que se importan automáticamente.
+El operador **import** es importante cuando se trabaja con clases de bibliotecas estándar de Java o definidas en otros paquetes. Se utiliza para traer miembros de otros paquetes al scope actual (la clase donde estamos importando). Esto permite que ese código acceda y utilice las clases y tipos definidos en otros paquetes. Sin embargo, no necesitamos usar import para las clases que pertenecen al mismo paquete o están en el paquete _java.lang_, ya que se importan automáticamente.
 
 La sintaxis básica del operador import es la siguiente:
 
 `import paquete.NombreDeLaClase;`
 
-- paquete: Es el nombre del paquete que contiene la clase que vas a importar.
-- NombreDeLaClase: Es el nombre de la clase que vas importar.
+- paquete: Es el nombre del paquete que contiene la clase que vamos a importar.
+- NombreDeLaClase: Es el nombre de la clase que vamos a importar.
 
 Veamos este ejemplo. Supongamos que tenés una clase llamada _MiClase_ en el paquete _miPaquete_, y queremos importarla en otra clase para usarla.
 
@@ -136,7 +136,7 @@ public class MiPrograma {
 ```
 
 #### Importación Estática
-Además de importar clases, también es posible realizar una _importación estática_ de miembros estáticos de una clase utilizando la palabra clave **static**. Esto te permite acceder a los miembros estáticos directamente sin utilizar el nombre de la clase. Veremos más adelante de qué se tratan.
+Además de importar clases, también es posible realizar una _importación estática_ de miembros estáticos de una clase utilizando la palabra clave **static**. Esto nos permite acceder a los miembros estáticos directamente sin utilizar el nombre de la clase. Veremos más adelante de qué se tratan.
 
 ```java
 import static paquete.ClaseEstatica.miMetodoEstatico;
@@ -327,7 +327,7 @@ Así creamos un nuevo objeto _Persona_ llamado _persona1_ utilizando el construc
 Si no definimos ningún constructor en una clase, el compilador proporcionará un constructor por defecto sin argumentos automáticamente. Este constructor por defecto inicializa los campos con valores predeterminados (por ejemplo, 0 para enteros, null para objetos, etc.) y simplemente invoca al constructor de la superclase (_super();_).
 
 #### Sobrecarga de Constructores
-En Java podemos tener múltiples constructores en una clase, siempre y cuando tengan diferentes parámetros (firma). Esto se conoce como **sobrecarga de constructores**. Podés proporcionar diferentes formas de inicializar objetos según sea necesario.
+En Java podemos tener múltiples constructores en una clase, siempre y cuando tengan diferentes parámetros (firma). Esto se conoce como **sobrecarga de constructores**. Podemos proporcionar diferentes formas de inicializar objetos según sea necesario.
 
 **Atención**: Si una clase tiene definido al menos un constructor, el compilador no provee un constructor por defecto. Por lo tanto, si definimos un constructor con parámetros, eso implica que no podremos inicializar un objeto de esa clase con un constructor sin parámetros.
 
@@ -417,7 +417,7 @@ Crear una clase llamada _Estudiante_ que tenga los siguientes atributos:
 
 Luego, crear un objeto de tipo _Estudiante_ con valores concretos para estos atributos e imprimir la información del estudiante en la consola.
 
-TIP: Investigar el método **toString** y cómo puede utilizarse para mostrar en formato String la información del estudiante.
+TIP: Investigar el método [**toString**](https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#toString--) y cómo puede utilizarse para mostrar en formato String la información del estudiante.
 
 ### Ejercicio: Clases y Métodos
 Crear una clase llamada _Rectangulo_ que represente un rectángulo. Esta clase debe tener los siguientes atributos:
@@ -728,7 +728,7 @@ enum DiaDeLaSemana {
 Así efinimos un tipo enumerable llamado _DiaDeLaSemana_ con siete valores posibles que representan los días de la semana.
 
 ### Usando un Enumerable
-Una vez que hayas definido un tipo enumerable, podés declarar variables utilizando este tipo y asignarles uno de los valores enumerados. Por ejemplo:
+Una vez que hayamos definido un tipo enumerable, podemos declarar variables utilizando este tipo y asignarles uno de los valores enumerados. Por ejemplo:
 
 ```java
 DiaDeLaSemana dia = DiaDeLaSemana.MARTES;
