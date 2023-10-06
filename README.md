@@ -23,3 +23,4 @@ Lxs alentamos a participar activamente, hacer preguntas, plantear dudas, aportar
 5. [Interfaces y Clases abstractas](./05_interfaces_y_clases_abstractas/README.md)
 6. [Generics](./06_generics/README.md)
 7. [Excepciones](./07_excepciones/README.md)
+8. [Colecciones](./08_colecciones/README.md)

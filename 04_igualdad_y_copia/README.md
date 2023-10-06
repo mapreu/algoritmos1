@@ -428,9 +428,6 @@ De esta forma, dado que nunca debería producirse la excepción _CloneNotSupport
 El ejemplo de implementación completo se encuentra en la carpeta [src](./src/).
 
 ### Estrategia propia
-
-> **Lectura de interés**: _Item 13: Override clone judiciously - Effective Java 3rd, de Joshua Bloch_.
-
 Es cierto que la implementación de la copia profunda a través de la interfaz _Cloneable_ introduce varias complejidades que se mencionan en el _item 13_ del libro de _Bloch_. Una alternativa que propone es generar un **constructor de copia** que reciba por parámetro otro objeto de la misma clase para inicializar la nueva instancia clonada, o bien, utilizar un método estático de **construcción de copia** a partir de otro objeto de misma clase que se pase por parámetro. Ambas opciones deben contemplar la copia real de los atributos con referencias para evitar el problema de la copia superficial.
 
 ```java
@@ -440,6 +437,10 @@ public Persona(Persona original) {...};
 // Método de construcción de copia
 public static Persona copiaProfunda(Persona original) {...};
 ```
+
+> **Lectura de interés**: 
+> - _Item 13: Override clone judiciously - Effective Java 3rd, de Joshua Bloch_.
+> - [Java Tutorials: Ordenando objetos](https://docs.oracle.com/javase/tutorial/collections/interfaces/order.html)
 
 ## Ejercicio: Copia profunda sin _Cloneable_
 
