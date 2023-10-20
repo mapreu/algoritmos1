@@ -240,7 +240,10 @@ Recordemos que los parámetros de operaciones pueden clasificarse como:
 - **variable de _entrada/salida_**: cumple ambos roles a la vez. Por ejemplo, la variable _arreglo_ en _ordenar(List\<T> arreglo)_.
 
 ## Ejercicio: Nuestra Lista Genérica
-1. Generar una versión propia llamada _ListaGenérica_ que extienda a la clase _AbstractList\<E>_. Debe utilizarse como estructura un arreglo nativo de Java (_E[]_) para almacenar los elementos, el cual debe crecer y reducirse a medida que se agregan o eliminan los elementos. No importa el criterio utilizado, puede copiarse ese comportamiento de la [Lista No Genérica](./src/ListaNoGenerica.java), no se busca eficiencia.
+1. Generar una versión propia llamada _ListaGenérica_ que extienda a la clase _AbstractList\<E>_. Debe utilizarse como estructura un arreglo nativo de Java para almacenar los elementos, el cual debe crecer y reducirse a medida que se agregan o eliminan los elementos. No importa el criterio utilizado, puede copiarse ese comportamiento de la [Lista No Genérica](./src/ListaNoGenerica.java), no se busca eficiencia.
+
+    [Ver newInstance de la clase Array](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Array.html#newInstance-java.lang.Class-int-).
+    
 2. Completar la funcionalidad sobreescribiendo los métodos:
     - public E set(int index, E element)
     - public void add(int index, E element)
