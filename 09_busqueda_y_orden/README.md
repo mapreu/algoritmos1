@@ -337,6 +337,9 @@ public static int partition(int[] arreglo, int inicio, int fin) {
 
 En esta implementación de la operación `partition`, establecemos como _pivote_ al último elemento e inicializamos dos índices: `i` y `j`. El primero se coloca al inicio del arreglo, mientras que el otro en la penúltima posición (el último elemento es el _pivote_). Luego, comenzamos a mover los índices en dirección mutua hasta que encontramos un intercambio de elementos a realizar, es decir, cuando la posición `i` tiene un elemento mayor al _pivote_ y la posición `j` un elemento menor. Si sucede esa situación se realiza el intercambio hasta que no haya más elementos a desplazar a su partición, cuando los índices se cruzan (`i > j`). Finalmente, se intercambia el _pivote_ con el primer elemento de la partición de la derecha (mayores), el cual pasa a la última posición.
 
+## Ejercicio: Wrapper de ordenamiento
+Implementar un método estático ordenar que reciba una colección genérica `List<T>` para ordenarla. Opcionalmente, puede recibir una orientación de orden (por defecto es ascendente), y puede definirse qué método/algoritmo de ordenamiento usar (por defecto se usa mergesort).
+
 ## Lectura de interés
 > - [VisuAlgo](https://visualgo.net/en/sorting)
 > - _Estructura de datos y algoritmos en Java. 2nd ed (2007), DROZDEK, A._

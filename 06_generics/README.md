@@ -208,7 +208,11 @@ for (Number numero : numeros) {
 Similar al caso previo, también podemos pasar como argumento a un tipo genérico un **lower bounded wildcard** que indica un tipo desconocido que puede ser de **un cierto tipo o cualquiera de sus supertipos**, a través del cual logramos que sea **contravariante**.
 
 ```java
-public static void insertarNumeros(List<? super Integer> numeros) {...}
+public static void insertarNumeros(List<? super Integer> numeros, int[] otros) {
+    for(int n : otros) {
+        numeros.add(n);
+    }
+}
 ```
 Esta cota inferior (_Integer_) para el comodin del tipo de la lista permite entonces que el método _insertarNumero_ sea invocado con un argumento que puede ser: _List\<Integer>_, _List\<Number>_ o _List\<Object>_, ya que existe una relación de herencia entre ellos gracias al comodín.
 
@@ -243,7 +247,7 @@ Recordemos que los parámetros de operaciones pueden clasificarse como:
 1. Generar una versión propia llamada _ListaGenérica_ que extienda a la clase _AbstractList\<E>_. Debe utilizarse como estructura un arreglo nativo de Java para almacenar los elementos, el cual debe crecer y reducirse a medida que se agregan o eliminan los elementos. No importa el criterio utilizado, puede copiarse ese comportamiento de la [Lista No Genérica](./src/ListaNoGenerica.java), no se busca eficiencia.
 
     [Ver newInstance de la clase Array](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Array.html#newInstance-java.lang.Class-int-).
-    
+
 2. Completar la funcionalidad sobreescribiendo los métodos:
     - public E set(int index, E element)
     - public void add(int index, E element)

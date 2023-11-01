@@ -24,3 +24,6 @@ Lxs alentamos a participar activamente, hacer preguntas, plantear dudas, aportar
 6. [Generics](./06_generics/README.md)
 7. [Excepciones](./07_excepciones/README.md)
 8. [Colecciones](./08_colecciones/README.md)
+9. [Búsqueda y Ordenamiento](./09_busqueda_y_orden/README.md)
+10. [Tratamiento de archivos](./10_archivos/README.md)
+11. [Interfaces Funcionales](./11_interfaces_funcionales/README.md)
