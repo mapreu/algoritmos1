@@ -96,6 +96,19 @@ En este ejemplo creamos una instancia de la interfaz `OperacionBinariaEntera` ut
 
 > Si bien podemos declarar el tipo de dato de los parámetros de una expresión lambda, **es recomendable no hacerlo** para que Java lo infiera automáticamente.
 
+También podríamos haber utilizado una **clase anónima** para hacer lo mismo, pero veamos que sería necesario más código y realmente no mejora la legibilidad respecto a las expresiones lambda. Debajo estamos generando una instancia de `OperacionBinariaEntera` y sobreescribiendo el método `evaluar` con una clase anónima.
+
+```java
+OperacionBinariaEntera suma = new OperacionBinariaEntera() {
+    @Override
+    public int evaluar(int a, int b) {
+        return a + b;
+    }
+};
+System.out.println(suma.evaluar(1,2));  // 3
+```
+> Una [**clase anónima**](https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html) nos permite **declararla e instanciarla al mismo tiempo**. Es similar a una **clase local** pero que sólo se utilizaría una vez (en la instancia generada).
+
 ### Combinando con interfaces funcionales
 La interfaz `OperacionBinariaEntera` básicamente define un comportamiento o funcionalidad donde se reciben dos argumentos y se devuelve un resultado del mismo tipo. Si revisamos las interfaces predefinidas del paquete `java.util.function` veremos que existen dos interesantes para reemplazarla en nuestro ejemplo.
 
