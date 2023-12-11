@@ -8,7 +8,7 @@ El concepto de **funciones como ciudadanos de primera clase** está estrechament
 - Recibe una o más funciones como argumento
 - Devuelve una función como retorno
 
-En la computación, algunos lenguajes permite definir funciones de orden superior, es principalmente una característica clave en la **programación funcional**. De esta forma, estos lenguajes consideran a las funciones como **ciudadanos de primera clase**, ya que podemos:
+En la computación, algunos lenguajes permiten definir funciones de orden superior, y es principalmente una característica clave en la **programación funcional**. De esta forma, estos lenguajes consideran a las funciones como **ciudadanos de primera clase**, ya que podemos:
 - pasarlas como parámetros de una función
 - devolverlas como resultado de una función
 - asignarlas a variables
@@ -16,7 +16,7 @@ En la computación, algunos lenguajes permite definir funciones de orden superio
 
 Entonces, las funciones de orden superior son aquellas funciones que pueden aceptar otras funciones como argumentos y/o devolver funciones como resultados. Nos permiten la creación de abstracciones más poderosas y genéricas en el código, ya que las funciones de orden superior pueden ser configuradas o personalizadas para realizar una variedad de tareas. A su vez, nos facilitan la composición de funciones, la modularidad y la reutilización del código.
 
-En un lenguaje que admite funciones como ciudadanos de primera clase, **las funciones son tratadas como cualquier otro tipo de dato**, como números o cadenas de texto. Esto significa que las funciones pueden ser asignadas a variables, pasadas como argumentos a otras funciones, retornadas como resultados de funciones y almacenadas en estructuras de datos.
+> En un lenguaje que admite funciones como ciudadanos de primera clase, **las funciones son tratadas como cualquier otro tipo de dato**, como números o cadenas de texto. Esto significa que las funciones pueden ser asignadas a variables, pasadas como argumentos a otras funciones, retornadas como resultados de funciones y almacenadas en estructuras de datos.
 
 Esto nos provee de gran flexibilidad en el diseño de soluciones. Imaginemos que deseamos aplicar diferentes operaciones sobre los elementos de un arreglo. Una opción sería implementar diferentes métodos, uno para cada operación, donde dentro de un bucle se aplique esta operación particular. Por ejemplo, si queremos elevar al cuadrado todos los números de un arreglo, implementaríamos ese método específico realizando la operación `elemento * elemento` dentro del bucle. Ahora bien, si pudiéramos pasar la operación a realizar como parámetro, podríamos definir un único método que la aplique a los elementos. Luego, al momento de invocarlo le decimos qué operación queremos hacer. Esta versión más flexible es propia del estilo funcional (la función `map`).
 
@@ -47,7 +47,7 @@ print(numeros_inversos)  # [-1, 2, -3, 4, -5, 6]
 ```
 En este ejemplo definimos una función de orden superior `aplicar_operacion` que recibe una función como segundo parámetro. Luego, como en Python las funciones son ciudadanos de primera clase (son objetos), podemos pasarlas como argumento a nuestra función previa. 
 
->En Java, las funciones (métodos) no son ciudadanos de primera clase, por lo cual debemos utilizar el concepto de **interfaz funcional** para _pasar funcionalidad_ como argumento. De lo contrario, podríamos utilizar una instancia de una clase (o una [clase anónima](https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html)) para pasar como argumento de un método, algo que no suele ser muy elegante o práctico de implementar.
+>En Java, las funciones (métodos) **no** son ciudadanos de primera clase, por lo cual debemos utilizar el concepto de **interfaz funcional** para _pasar funcionalidad_ como argumento. De lo contrario, podríamos utilizar una instancia de una clase (o una [clase anónima](https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html)) para pasar como argumento de un método, algo que no suele ser muy elegante o práctico de implementar.
 
 ## ¿Qué es una interfaz funcional?
 Es una **interfaz que tiene sólo un [método abstracto](../05_interfaces_y_clases_abstractas/README.md#método-abstracto)** (**_SAM_**: Single Abstract Method). Esto significa que la interfaz define **un único comportamiento** que debe ser implementado por las clases que la utilicen. 
@@ -312,7 +312,7 @@ public static void main(String[] args) {
 ```
 En este caso utilizamos el método `test` que es el único abstracto que trae `Predicate<T>` para evaluar, dado un argumento de tipo `T`, si se cumple cierto criterio gracias a la devolución de un `boolean`. Nuestro predicado aquí, definido con una expresión lambda, verifica si el elemento es mayor a 3.
 
-Por otra parte, si quisiéramos ordenar una lista de cadenas de texto en función de su longitud, podríamos utilizar una expresión lambda con la interfaz funcional [`Comparator`](../04_igualdad_y_copia/README.md#usando-un-comparador), la cual recordemos tiene un método abstracto `compare`.
+Por otra parte, si quisiéramos ordenar una lista de cadenas de texto en función de su longitud, podríamos utilizar una expresión lambda con la interfaz funcional [`Comparator`](../04_igualdad_orden_copia/README.md#usando-un-comparador), la cual recordemos tiene un método abstracto `compare`.
 
 ```java
 List<String> frutas = Arrays.asList("manzana", "pera", "banana", "uva");

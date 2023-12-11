@@ -1,4 +1,4 @@
-# Igualdad
+# Relación de Igualdad
 
 En esta sección efiniremos brevemente cómo analizar la igualdad entre dos variables. Este concepto es clave ya que se utiliza de forma regular para comparar, por ejemplo, si existe cierto elemento en un arreglo.
 
@@ -148,6 +148,8 @@ public boolean equals(Object otro) {
 
 La sobreescritura del método _equals_ es necesaria para definir la igualdad de dos objetos, pero **no es suficiente**. Internamente Java utiliza en ciertos casos una **función hash** para mejorar la performance en la comparación, por ejemplo en estructuras de datos como _HashMap_. Básicamente, el método **hashCode** (también definido en _Object_) provee un **valor entero** (_hash_) que representa el estado de una instancia.
 
+`objeto.hashCode() -> NÚMERO ENTERO`
+
 Como toda función _hash_, existe el riesgo de colisión porque el rango de valores posibles del valor entero no puede representar a todos los objetos del sistema posibles con un único _hash_. Por lo tanto, pueden existir objetos distintos que compartan un mismo _hash_ (no es lo ideal), pero siempre debemos garantizar que **dos objetos iguales tengan el mismo _hash_**.
 
 ### El contrato del _hashCode_
@@ -185,6 +187,137 @@ public static int hashCode(Object[] a) {
 }
 ```
 Esta misma implementación podría utilizarse para nuestras clases donde, en lugar de tener un arreglo de _Object_, usaríamos un conjunto de atributos no mutables que son parte de la validación del _equals_.
+
+## Inmutabilidad
+Mencionamos que para definir el _hashCode_ de una clase es recomendable utilizar atributos inmutables. Esta recomendación busca evitar problemas en estructuras de datos donde se almacenan los elementos indexados a través de su _hashCode_. Un ejemplo es el caso de `Hashmap` donde se generan nodos que tienen un atributo _hash_ (inmutable) donde se coloca el _hashCode_ de la _key_ (lo veremos más adelante en [Colecciones](../08_colecciones/README.md)). Entonces, si cambiásemos el valor de atributos de un objeto que impactan en un nuevo _hashCode_, entonces el índice de la estructura quedaría inconsistente, porque ese cambio no produce automáticamente una actualización de las estructuras que contienen esos objetos (no se generan nuevos nodos con el nuevo _hashcode_). Por ese motivo, lo ideal sería que el _hashCode_ de un objeto nunca cambie durante su tiempo de vida, es decir, **se compute a partir de atributos inmutables**.
+
+### ¿Qué es la inmutabilidad?
+El concepto de inmutabilidad está fuertemente relacionado a la programación funcional, donde se trabaja evaluando funciones puras que no tienen efectos secundarios, en lugar de utilizar de objetos y estados en memoria cambiantes. Es otro paradigma de programación, uno que no abordaremos en este curso, pero sin dudas muy interesante para incorporar eventualmente.
+
+La inmutabilidad se refiere a la incapacidad de un objeto para cambiar su estado después de su creación. En Java, esto implica que una vez que se ha creado un objeto inmutable, sus atributos internos no pueden ser modificados. Por lo tanto, no puede cambiar su estado.
+
+### ¿Por qué diseñaríamos algo inmutable?
+Diseñar soluciones con elementos inmutables nos provee algunos beneficios.
+
+#### Claridad y Entendimiento
+La inmutabilidad simplifica la lógica del programa al reducir la cantidad de cambios de estado posibles. Esto hace que el código sea más fácil de entender ya que no es necesario rastrear cambios en el estado a lo largo del tiempo.
+
+#### Prevención de Cambios Accidentales
+Cuando se crea una instancia de una clase inmutable, sus valores no pueden ser modificados. Esto ayuda a prevenir cambios accidentales en el estado del objeto, lo que puede conducir a resultados inesperados o errores difíciles de rastrear.
+
+#### Concurrencia más sencilla y segura
+En entornos con concurrencia (_multi-threading_), las clases inmutables eliminan la necesidad de sincronización para evitar problemas de concurrencia. Dado que no hay posibilidad de cambios en el estado, varios hilos (_threads_) pueden acceder y utilizar objetos inmutables de manera segura sin preocuparse por conflictos o inconsistencias.
+
+#### Facilita la Programación Funcional
+Al diseñar clases inmutables, se facilita la adopción de principios funcionales, como la creación de funciones puras y la composición de operaciones.
+
+#### Optimización de Rendimiento:
+En ciertos casos, los compiladores y entornos de ejecución pueden optimizar el código que involucra objetos inmutables, ya que la falta de cambios de estado permite realizar ciertas optimizaciones.
+
+### Inmutabilidad en Java
+Veamos cómo podemos diseñar clases inmutables en Java. Recordemos que necesitamos garantizar que sus atributos no cambien luego de inicializarse. Para lograrlo, debemos contemplar las siguientes recomendaciones.
+
+#### 1. Declarar la clase como `final`
+Declarar la clase con el operador `final` nos asegura que **no pueda ser extendida** por otras clases, evitando posibles especializaciones que podrían comprometer la inmutabilidad.
+
+```java
+public final class MiClaseInmutable {
+    // ...
+}
+```
+
+#### 2. Declarar atributos como `private` y `final`
+Marcar los atributos de la clase como `private` y `final` para garantizar que no puedan ser modificados una vez que se haya inicializado la instancia de la clase. 
+
+```java
+public final class MiClaseCasiInmutable {
+    private final int numero;
+    private final String[] cadenas;
+
+    public MiClaseCasiInmutable(int numero, String[] cadenas) {
+        this.numero = numero;
+        this.cadenas = cadenas;
+    }
+}
+```
+> En este punto, debemos prestar atención a qué tipo de atributo es, ya que si es primitivo realmente será inmutable su valor, pero si es de tipo **referencia** sólo garantizamos que **la referencia es inmutable**. 
+
+En nuestro ejemplo, el atributo `numero`se inicializa con el constructor con el valor pasado en el primer parámetro, y lo mismo ocurre con el atributo `cadenas`. La diferencia es que `cadenas` no es primitivo y el valor que almacena es la **referencia** al arreglo de tipo `String[]` pasado como segundo parámetro. Al declarar `cadenas` como `final` sólo garantizamos que esa referencia no cambie luego de inicializarlo, pero **sí podremos modificar el objeto al cual apunta** (modificando elementos del arreglo).
+
+Una forma de mejorar el diseño sería encapsulando una copia propia de ese atributo de tipo referencia para evitar que alguien lo pueda modificar por fuera. Ojo que también deberíamos cuidarnos de no ofrecer un _getter_ de ese atributo directo, es decir, no exponer ese objeto original de nuestra estructura (porque no es realmente inmutable y podrían modificarlo).
+
+```java
+public final class MiClaseCasiInmutable2 {
+    private final int numero;
+    private final String[] cadenas;
+
+    public MiClaseCasiInmutable2(int numero, String[] cadenas) {
+        this.numero = numero;
+        this.cadenas = Arrays.copyOf(cadenas, cadenas.length);
+    }
+    // No definir un getter que devuelva la referencia del atributo cadenas
+}
+```
+Si bien esta versión es un poco mejor que la previa, debemos tener cuidado que no se pueda modificar el objeto que apunta el atributo `cadenas`. Por eso suele ser ideal que el tipo de dato del atributo sea también inmutable para no tener que estar pendiente de esos cuidados.
+
+> Las colecciones incorporadas en Java ofrecen métodos de construcción de estructuras inmutables, por ejemplo `Collections.unmodifiableList` para generar una lista inmutable.
+
+#### 3. No definir métodos modificadores (_setters_):
+Eliminar cualquier método que permita modificar los atributos después de la creación de la instancia. Esto incluye evitar métodos _setters_ y proporcionar solo métodos de acceso, preferentemente sin exponer las referencias originales. Para esto último se podrían generar copias de los objetos de atributos internos cuando se los consumen con los _getters_.
+
+```java
+public final class MiClaseInmutable {
+    private final int numero;
+    private final String[] cadenas;
+
+    public MiClaseInmutable(int numero, String[] cadenas) {
+        this.numero = numero;
+        this.cadenas = Arrays.copyOf(cadenas, cadenas.length);
+    }
+
+    // Solo métodos de acceso, sin setters
+    public int getNumero() {
+        return numero;
+    }
+
+    public String[] getCadenas() {
+        return Arrays.copyOf(cadenas, cadenas.length);
+    }
+}
+```
+
+#### 4. Reemplazar _setters_ por métodos _creacionales_
+Si necesitamos generar una versión modificada de nuestro objeto inmutable, podemos definir una operación, estilo _factory method_, que devuelva un nuevo objeto en lugar de modificar el estado del actual.
+
+```java
+public final class MiClaseInmutable {
+    private final int numero;
+    private final String[] cadenas;
+
+    public MiClaseInmutable(int numero, String[] cadenas) {
+        this.numero = numero;
+        this.cadenas = Arrays.copyOf(cadenas, cadenas.length);
+    }
+
+    public MiClaseInmutable duplicarNumero() {
+        // Crea y devuelve un nuevo objeto en lugar de modificar el estado actual
+        return new MiClaseInmutable(numero * 2, cadenas);
+    }
+}
+```
+
+#### 5. No implementar clone()
+Según _Item 13: Override clone judiciously - Effective Java 3rd, de Joshua Bloch_, evitar implementar el clonado de objetos inmutables, ya que carece de sentido al no poder cambiar su estado.
+
+### Ejercicio: Arreglo de inmutables
+Diseñar una clase inmutable llamada `Persona` que tenga como atributos nombre, apellido y documento. El documento debe ser de tipo `Documento`, una clase también inmutable, y se modela con un número entero, una fecha de emisión y otra fecha de vencimiento.
+- Implementar la clase `Persona` con un único constructor que inicialice todos sus atributos.
+- Implementar la clase `Documento` con un único constructor que acepta el número del documento, luego la fecha de emisión será la fecha actual del sistema y su vencimiento será la actual + 10 años.
+- Agregar el comportamiento de renovar documento, el cual devuelve un nuevo documento con el mismo número pero fecha de emisión actual y vencimiento actualizadas.
+- Generar un arreglo de 5 personas y agregar instancias previamente generadas.
+- Implementar un método que muestre las personas del arreglo y sus respectivos documentos.
+- Renovar el documento de 2 personas.
+- Verificar qué sucede con las personas del arreglo y sus documentos.
 
 ## Comparando igualdad de objetos
 
@@ -233,7 +366,7 @@ e) Crear un programa de prueba (Main) que:
 - Cree dos objetos de _Estudiante_ con misma matrícula y verifique si son iguales.
 - También, realizar una comparación de identidad (usando ==) de al menos dos de los objetos y mostrar un mensaje que indique si son iguales o diferentes.
 
-## Ordenando elementos
+# Relación de Orden
 Así como determinar la igualdad de dos objetos es un concepto clave, también puede serlo compararlos a través de cierta relación de **orden**. En casos donde sea necesario definir esta relación, podemos utilizar la [interfaz](../05_interfaces_y_clases_abstractas/README.md) que trae incorporada Java [Comparable](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html) que nos permitirá aprovechar los algoritmos de ordenamiento predefinidos en las [Colecciones de Java](../08_colecciones/README.md).
 
 ```java
@@ -248,7 +381,7 @@ La interfaz _Comparable_ de Java es un [tipo genérico](../06_generics/README.md
 
 > Si el objeto recibido por parámetro no puede compararse con el objeto actual, el método lanza la excepción _ClassCastException_.
 
-### Restricciones del compareTo
+## Restricciones del compareTo
 Al momento de implementar el método _compareTo_ debemos respetar las siguientes restricciones descriptas en la documentación de Java:
 
 - Asegurarnos que `sgn(x.compareTo(y)) == -sgn(y.compareTo(x))` para todos los _x_ e _y_.
@@ -271,7 +404,7 @@ public class Persona implements Comparable<Persona> {
 ```
 Si el atributo de documento fuera un _Integer_ también podríamos habernos apoyado en el _compareTo_ de esa clase, ya que _Integer_ implementa la interfaz _Comparable<Integer>_. El retorno de nuestro _compareTo_ sería: `this.getDocumento().compareTo(otro.getDocumento())`.
 
-### Usando un comparador
+## Usando un comparador
 En casos donde debamos comparar objetos de clases que **no implementan la interfaz _Comparable_**, o aún si lo hicieran y queremos utilizar **otro criterio de orden** diferente al _orden natural_ definido en el _compareTo_, podemos utilizar la interfaz [_Comparator_](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html).
 
 ```java
@@ -318,7 +451,7 @@ En este ejemplo, el método _Arrays.sort_ invocará en su implementación el mé
 
 > Definir una relación de orden en nuestras clases a través de estas interfaces es de gran utilidad para aprovechar los **algoritmos de ordenamiento que incluye Java** en sus librerías.
 
-# La copia
+# Copia de objetos
 
 Similar a la igualdad, existen dos tipos o formas de copias de objetos.
 

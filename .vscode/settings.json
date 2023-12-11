@@ -3,7 +3,7 @@
     "java.project.sourcePaths": [
         "00_usando_git\\src",
         "02_herencia\\src",
-        "04_igualdad_y_copia\\src",
+        "04_igualdad_orden_copia\\src",
         "07_generics\\src"
     ],
     "java.debug.settings.onBuildFailureProceed": true
