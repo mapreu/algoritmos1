@@ -8,13 +8,13 @@ El concepto de **funciones como ciudadanos de primera clase** está estrechament
 - Recibe una o más funciones como argumento
 - Devuelve una función como retorno
 
-En la computación, algunos lenguajes permiten definir funciones de orden superior, y es principalmente una característica clave en la **programación funcional**. De esta forma, estos lenguajes consideran a las funciones como **ciudadanos de primera clase**, ya que podemos:
+En el área de computación algunos lenguajes permiten definir funciones de orden superior, y es principalmente una característica clave en la **programación funcional**. De esta forma, estos lenguajes consideran a las funciones como **ciudadanos de primera clase**, ya que podemos:
 - pasarlas como parámetros de una función
 - devolverlas como resultado de una función
 - asignarlas a variables
 - almacenarlas en estructuras de datos
 
-Entonces, las funciones de orden superior son aquellas funciones que pueden aceptar otras funciones como argumentos y/o devolver funciones como resultados. Nos permiten la creación de abstracciones más poderosas y genéricas en el código, ya que las funciones de orden superior pueden ser configuradas o personalizadas para realizar una variedad de tareas. A su vez, nos facilitan la composición de funciones, la modularidad y la reutilización del código.
+Entonces, **las funciones de orden superior son aquellas funciones que pueden aceptar otras funciones como argumentos y/o devolver funciones como resultados**. Nos permiten la creación de abstracciones más poderosas y genéricas en el código, ya que las funciones de orden superior pueden ser configuradas o personalizadas para realizar una variedad de tareas. A su vez, nos facilitan la composición de funciones, la modularidad y la reutilización del código.
 
 > En un lenguaje que admite funciones como ciudadanos de primera clase, **las funciones son tratadas como cualquier otro tipo de dato**, como números o cadenas de texto. Esto significa que las funciones pueden ser asignadas a variables, pasadas como argumentos a otras funciones, retornadas como resultados de funciones y almacenadas en estructuras de datos.
 

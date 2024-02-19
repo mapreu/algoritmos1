@@ -896,6 +896,8 @@ obj1.setCampo1(15);
 System.out.println(obj1.getCampo1());   // Muestra el valor de campo1: 15
 ```
 
+> Es una buena práctica **evitar definir _getters_ y _setters_** en nuestras clases, se suele los considerar un anti-patrón. El motivo de esta recomendación es que si se incorporan se estaría vulnerando también de cierta forma el **ocultamiento de la estructura** de la clase. Por lo tanto siempre conviene interactuar a través de un comportamiento público diseñado (interfaz de la clase), en lugar de especificar métodos que accedan o modifiquen directamente los atributos.
+
 ## Anotaciones
 Las anotaciones son metadatos que se utilizan para proporcionar información adicional sobre elementos del código fuente, como clases, métodos, variables, etc. Son usualmente utilizadas para documentación, configuración y procesamiento durante la compilación o en tiempo de ejecución. Son etiquetas que se colocan directamente antes de elementos del código fuente. Proporcionan información adicional sobre esos elementos y pueden ser interpretadas por varias herramientas y librerías. Las anotaciones comienzan con el símbolo **@** seguido del nombre de la anotación.
 
