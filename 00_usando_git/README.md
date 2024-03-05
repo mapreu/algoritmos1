@@ -1,90 +1,99 @@
-# Primera Actividad con GIT y Java
-Comenzamos a trabajar con Java y GitHub
+# Introducción a Git
+En este módulo aprenderemos a utilizar la herramienta Git y GitHub para utilizarla en nuestros proyectos a lo largo de la cursada.
 
-## Preparar el entorno
+## ¿Qué es GitHub?
 
-1. Instalar el Coding Pack for Java 
+GitHub es una plataforma para alojar nuestros proyectos utilizando el sistema de control de versiones Git. GitHub permite compartir y colaborar en proyectos. Es una herramienta sumamente útil para realizar proyectos en equipos.
+Recomendamos leer la [documentación oficial sobre la introducción a GitHub.](https://docs.github.com/es/get-started)
 
-Incluye VS Code, el Java Development Kit (JDK) y extensiones de Java.
+## Preparar el entorno Visual Studio Code para trabajar con Git y Java
 
-https://code.visualstudio.com/docs/java/java-tutorial
+1 - Lo primero que debemos hacer es instalar el Coding Pack for Java. Incluye VS Code, el Java Development Kit (JDK) y extensiones de Java.
+Siguiendo el link instalamos el Coding Pack para el sistema operativo correspondiente. Para aquellos sistemas operativos como Linux hay que instalar las herramientas de manera individual.
 
-2. Descargar la extensión de Git en VS Code
+→ https://code.visualstudio.com/docs/java/java-tutorial
+
+2 - Luego descargamos la extensión de Git en VS Code. Descargamos desde el link o desde el VS Code. En el VS Code vamos al panel izquierdo y seleccionamos la pestaña de source control, desde ahí podremos descargar Git para nuestro sistema operativo.
+
+→ https://git-scm.com/downloads 
 
 Observación, en “Choosing the default editor used by Git” seleccionar “Use Visual Studio Code as Git’s default editor”
 
-## Comenzando con GitHub y Java
-### Fork
-El **fork** es una acción que se realiza en del lado del servidor (Github, en este caso) que nos permite copiar un repositorio actual en uno nuevo independiente del original. Este nuevo repositorio vivirá en nuestra cuenta Github y seremos dueñxs del mismo.
+## Comenzamos a usar Git
 
-3. Realizar un fork de este repositorio **algoritmos1**
+Como primer paso debemos crearnos una cuenta de GitHub y ver algunos términos y acciones que se pueden realizar con git.
 
-4. Ejercicio: Realizar la siguiente actividad
+### Términos y acciones Git
 
-Implementar la clase Lamparita, que sirva para representar el estado de encendido de una lamparita (encendido o apagado). Defina, asimismo, dos métodos que permitan encender y apagar la luz de la lamparita y otro que indique en qué estado se encuentra. La lamparita inicialmente está apagada.
+→ **Repositorio** es donde se encuentran los archivos, el código y el historial de revisiones de cada archivo de un proyecto. 
 
-Recordar una vez realizado el ejercicio commitear y pushear los cambios.
-
-### Clone
+→ **Clonar** es descargar una copia completa de los datos de un repositorio de GitHub. El repositorio clonado sigue asociado al original, si se quisieran subir cambios se suben al original.
 
 ```bash
 $ git clone HTTPS_del_repo
 ```
 
-### Commit 
+→ **Fork** es una acción que se realiza del lado del servidor (GitHub, en este caso) que nos permite copiar un repositorio actual en uno nuevo independiente del original. Este nuevo repositorio vivirá en nuestra cuenta GitHub y seremos dueñxs del mismo.
+
+→ **Commit** es la acción que realizamos para guardar los cambios dentro de nuestro repositorio local. Es decir, los cambios no se verán en GitHub, sino que se verán en nuestro directorio .git.
+
+Los archivos en Git tienen tres estados: untrucked, staged y committed. En el área working tree o working directory los archivos están untrucked, Git no tiene en cuenta los cambios realizados. El el staging area los cambios ya están preparados para ser incorporados al repositorio local. Aquí se puede volver para atrás y seguir modificando el proyecto o realizar un ‘commit’. El repositorio local son los archivos que se encuentran en tu directorio .git, una vez en está área se pueden sincronizar los cambios con GitHub.
 
 ```bash
-$ git add
+//Información sobre cuál es la working tree y sobre el estado de los archivos
+$git status
+//Notificar los cambios de un archivo
+$git add [filename]
+//Commitear los cambios para guardarlos en el repositorio local
+$git commit -m "mensaje_del_commit"
 ```
+→ **Push** es la acción que realizamos para sincronizar el repositorio local con el repositorio remoto. Una vez realizado los cambios se verán reflejados en GitHub. Cuando tenemos más de una rama es importante verificar sobre qué rama se realizará el push.
 
 ```bash
-$ git commit -m "mensaje_del_commit"
+//Verificó sobre qué rama estoy trabajando. La rama con '*' será la activa
+$git branch
+//Cambiar de rama
+$git checkout branch
+//Otra alternativa si quisiera crear y cambiar de rama
+$git checkout -b new-branch
+$git push -u origin new-branch
+//Realizo el push desde la rama elegida
+$git push
 ```
 
-### Push
+```-u``` es una abreviación para  ```--set-upstream / --set-upstream-to``` con este comando asociamos la nueva rama creada de forma local al repositorio remoto.
+
+→ **Ramas o branch**. Las ramas son versiones paralelas del código dentro del mismo repositorio que no afectan a la rama principal. Se utilizan principalmente para agregar nuevas funcionalidades y resolver problemas del código. El código anterior muestra cómo ver, crear y alternar ramas. Existen muchas maneras de realizar estas acciones (git branch, git switch, git checkout), recomendamos ver cada comando en la documentación de Git.
+
+→ **Merge** se utiliza para aplicar los cambios de una rama a otra. Es importante antes de hacer el merge encontrarnos en la rama donde deseamos que ocurra el merge, generalmente la rama master/main.
 
 ```bash
-$ git push
+//Me ubico en la rama master
+$git checkout master
+//Realizo el merge con la rama new-feature
+$git merge new-feature
+//Una vez realizado el merge puedo eliminar la rama new-feature
+$git branch -d new-feature
 ```
 
-### Branch
+→ **Pull request** es una solicitud para combinar los cambios de una rama a otra cuando queremos contribuir en proyectos no propios.
 
-5. Agregar una nueva función a la lamparita.
+Para empezar debemos realizar un fork y antes de empezar a trabajar es importante crear una nueva rama desde la rama master. En esta nueva rama haremos las contribuciones al proyecto.
+Una vez que realizamos un push podremos realizar el pull request desde GitHub. Luego el dueñx del proyecto decidirá si realiza un merge o cierra la solicitud.
 
-Para esto crear una nueva rama y realizar sobre esta los nuevos cambios.
+**Recomendamos ver la [documentación oficial](https://git-scm.com/doc) de Git para conocer las diferentes opciones que existen para cada comando.**
 
-```bash
-$ git checkout -b nueva_rama
-```
-(creo y me cambio a la nueva_rama)
-
-```bash
-$ git push -u origin nueva_rama
-```
-(subo nueva_rama al repositorio remoto)
-
-6. Cuando la nueva función este completada unir la rama feature al main
-
-### Merge
-
-a. Verificar que no haya nada para commitear
-```bash
-$ git status
-```
-
-b. Cambiar a la rama main
-
-```bash
-$ git checkout main
-```
-
-c. Realizar el merge desde _nombre_rama_ a la rama actual (main)
-
-```bash
-$ git merge nombre_rama
-```
 
 ### Gitignore
 
-Un archivo ```.gitignore ``` especifica que archivos o carpetas Git deberá ignorar. Estos archivos son aquellos que intencionalmente queremos fuera de seguimiento.
-Para crear un archivo ```.gitignore``` local, hay que crear un archivo de texto y asignarle el nombre ".gitignore". Luego, incluir los archivos o carpetas que deseamos que Git ignore.
+Un archivo **.gitignore** especifica qué archivos o carpetas Git deberá ignorar. Estos archivos son aquellos que intencionalmente queremos fuera de seguimiento. Para crear un archivo .gitignore local, hay que crear un archivo de texto y asignarle el nombre ".gitignore". Luego, incluir los archivos o carpetas que deseamos que Git ignore.
+
+[Colección de plantillas gitignore](https://github.com/github/gitignore) 
+
+## Ejercicio    
+
+### Proyecto Java en Visual Studio Code
+
+Crear un nuevo *proyecto java* desde VS Code y luego subir ese proyecto vacío a GitHub. Para realizar este ejercicio se debe crear el proyecto java y el repositorio por separado, luego asociarlos utilizando ```$git remote add origin HTTPS_del_repo```. Luego modificar el archivo README.md y sincronizar los cambios con el repositorio remoto. 
+
+Por último realizar un fork  de la actividad de un compañerx. Crear una nueva rama para funciones matemáticas. Desarrollar algunas funciones, testearlas y realizar un pull request.
