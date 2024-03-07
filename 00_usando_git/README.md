@@ -97,3 +97,20 @@ Un archivo **.gitignore** especifica qué archivos o carpetas Git deberá ignora
 Crear un nuevo *proyecto java* desde VS Code y luego subir ese proyecto vacío a GitHub. Para realizar este ejercicio se debe crear el proyecto java y el repositorio por separado, luego asociarlos utilizando ```$git remote add origin HTTPS_del_repo```. Luego modificar el archivo README.md y sincronizar los cambios con el repositorio remoto. 
 
 Por último realizar un fork  de la actividad de un compañerx. Crear una nueva rama para funciones matemáticas. Desarrollar algunas funciones, testearlas y realizar un pull request.
+
+## Recursos
+
+**[Primeros Pasos en Visual Studio Code](https://www.youtube.com/watch?v=gkZKDWWtOqI)**, muestra cómo realizar lo siguiente en VSCode: 
+- Crear un Proyecto Java
+- Abrir un Proyecto o Carpeta Existente
+-  Clonar un Repositorio de GitHub
+- Agregar más de un proyecto al workspace
+- Crear Paquetes
+- Compilar un programa java desde la terminal
+
+**[Aprende a usar el debug de VSCode](https://www.youtube.com/watch?v=lPg5VUrOVgY)** , es un tutorial completo y sencillo para aprender a debuggear en VSCode.
+
+**[Cómo instalar JAVA JDK en Winows 10 / 11 y configurar variables de entorno JAVA_HOME](https://www.youtube.com/watch?v=0FXl5rBwNVk)**  
+Si fuera necesario configurar las variables de entorno JAVA_HOME y PATH este video explica cómo hacerlo en Windows. El video muestra cómo configurar las variables a partir del minuto 1:14.  
+Para configurar las variables en otros sistemas operativos ver la [documentación de Java](https://www.java.com/es/download/help/path_es.html).
+
